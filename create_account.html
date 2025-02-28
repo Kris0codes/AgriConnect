@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriConnect</title>
+</head>
+<body>
+    <h1 align="center"> Create Account </h1>
+    <form> 
+        <h1> Personal Information </h2>
+        <table>
+            <tr>
+                <td> <label id="name">Name</label> </td>
+                <td> <input id="name" type="text" placeholder="enter your name" required> </td>
+            </tr>
+            <tr>
+                <td> <label id="phone">Phone</label> </td>
+                <td> <input id="phone" type="text" placeholder="enter your phone number" required> </td>
+            <tr>
+                <td> <input type="textarea" rows="20" cols="20"></td>
+            </tr>
+            <tr>
+                <td> <label id="email">Email</label> </td>
+                <td> <input id="email" type="email" placeholder="enter your email" required> </td>
+            </tr>
+            <tr>
+                <td> <label id="phone">Phone</label> </td>
+                <td> <input id="phone" type="text" placeholder="enter your phone number" required> </td>
+            </tr>
+        </table>
+        </form>
+        <form>
+        <h1> Farm Details </h2>
+        <table>
+            <tr>
+                <td> <label id="farm_name">Farm Name</label> </td>
+                <td> <input id="farm_name" type="text" placeholder="enter your farm name" required> </td>
+            </tr>
+            <tr>
+                <td> <label id="farm_size">Farm Size</label> </td>
+                <td> <input id="farm_size" type="text" placeholder="enter your farm size" required> </td>
+            </tr>
+            <tr>
+                <td> <label id="farm_location">Farm Location</label> </td>
+                <td> <input id="farm_location" type="text" placeholder="enter your farm location" required> </td>
+            </tr>
+        <tr>
+                <td> <label id="farm_crops">Farm Crops</label> </td>
+                <td> 
+                    <select>
+                    <option> Pulses </option>
+                    <option> Fruits </option>
+                    <option> Vegetables </option>
+                    <option> Grain </option>
+                    <option> Dairy </option>
+                    <option> Meat </option>
+                </select> </td>   
+            </tr>
+            <tr>
+                <td> <label id="farm_animals">Farm Animals</label> </td>
+                <td> 
+                    <select>
+                    <option> Cattle </option>
+                    <option> Poultry </option>
+                    <option> Fish </option>
+                    <option> Sheep </option>
+                    <option> Goats </option>
+                    <option> Pigs </option>
+                </select> </td>
+                </tr>
+        </table>
+        </form>
+        <form>
+        <h1> Account Details </h2>
+        <table>
+            <tr>
+                <td> <label id="password">Password</label> </td>
+                <td> <input id="password" type="password" placeholder="enter your password" required> </td>
+            </tr>
+            <tr>
+                <td> <label id="confirm_password">Confirm Password</label> </td>
+                <td> <input id="confirm_password" type="password" placeholder="confirm your password" required> </td>
+            </tr>
+        
+        <tr>
+                <td> <label id="checkbox" for="checkbox" value="I agree terms and conditions" required> </label> 
+                </td>
+            </tr>
+            <tr>
+        <button type="submit"> Create Account </button>
+            </tr>
+        </table>
+        </form>
+</body>
+</html>

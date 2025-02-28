@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Product Table</title>
+</head>
+<body>
+    <table border="0" cellpadding="5" cellspacing="0">
+        <tr>
+            <th colspan="2">Product Basics</th>
+        </tr>
+        <tr>
+            <td>Product Name:</td>
+            <td>
+                <select id="product-name" name="product-name">
+                    <option value="wheat">Wheat</option>
+                    <option value="rice">Rice</option>
+                    <option value="corn">Corn</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Product Category:</td>
+            <td>
+                <select id="product-category" name="product-category">
+                    <option value="grain">Grain</option>
+                    <option value="vegetable">Vegetable</option>
+                    <option value="fruit">Fruit</option>
+                </select>
+            </td>
+        </tr>
+        
+        <tr>
+            <th colspan="2">Product Certification</th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <label><input type="checkbox" name="certification" value="organic"> Organic</label>
+                <label><input type="checkbox" name="certification" value="non-organic"> Non-Organic</label>
+                <label><input type="checkbox" name="certification" value="fairtrade"> Fairtrade</label>
+                <label><input type="checkbox" name="certification" value="local-produce"> Local Produce</label>
+            </td>
+        </tr>
+        
+        <tr>
+            <th colspan="2">Product Specifications</th>
+        </tr>
+        <tr>
+            <td>Quality Grade:</td>
+            <td>
+                <select id="quality-grade" name="quality-grade">
+                    <option value="excellent">Excellent</option>
+                    <option value="good">Good</option>
+                    <option value="bad">Bad</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Size (in inches):</td>
+            <td><input type="number" id="size" name="size" min="1"></td>
+        </tr>
+        <tr>
+            <td>Minimum Order Quantity:</td>
+            <td><input type="number" id="min-order" name="min-order" min="1"></td>
+        </tr>
+        <tr>
+            <td>Maximum Order Quantity:</td>
+            <td><input type="number" id="max-order" name="max-order" max="1000"></td>
+        </tr>
+        <tr>
+            <td>Weight per Unit (kg):</td>
+            <td><input type="number" id="weight" name="weight" step="0.01"></td>
+        </tr>
+    </table>
+    <br>
+    <button type="submit">Submit</button>
+</body>
+</html>
