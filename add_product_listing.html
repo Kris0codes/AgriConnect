@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriConnect</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="Logo.png" alt="AgriConnect Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="list-product.html">Marketplace</a></li>
+            <li><a href="weather.html">Weather</a></li>
+            <li><a href="contactUs.html">Contact</a></li>
+            <li><a href="kanindex.html">EN/KN</a></li>
+        </ul>
+    </nav>
+
+    <hr>
+
+    <!-- Product Form -->
+    <div class="container">
+        <h2>Add New Product</h2>
+        
+        <div class="form-section">
+            <h3>Product Basics</h3>
+            <label>Product Category</label>
+            <select title="#">
+                <option>Select</option>
+                <option>Fruits</option>
+                <option>Vegetables</option>
+            </select>
+            <label>Product Name</label>
+            <input type="text" placeholder="e.g., Corn">
+        </div>
+
+        <div class="form-section">
+            <h3>Certification</h3>
+            <div class="certifications">
+                <span>Organic</span>
+                <span>Non-GMO</span>
+                <span>Fairtrade</span>
+                <span>Local</span>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Product Specification</h3>
+            <label>Quality Grade</label>
+            <select title="#">
+                <option>Select</option>
+                <option>Premium</option>
+                <option>Standard</option>
+            </select>
+            <label>Size (inches)</label>
+            <input type="text" placeholder="e.g., 2-3">
+            <label>Minimum Order Quantity</label>
+            <input type="number" placeholder="e.g., 10">
+            <label>Maximum Order Quantity</label>
+            <input type="number" placeholder="e.g., 1000">
+            <label>Weight per unit (kg)</label>
+            <input type="text" placeholder="e.g., 5">
+        </div>
+
+        <div class="form-section">
+            <h3>Product Description</h3>
+            <label>Describe the product</label>
+            <textarea placeholder="Enter product details..."></textarea>
+        </div>
+
+        <div class="buttons"><center>
+            <button class="save-btn" onclick="alert('Saved')">Save & Publish</button></center>
+        </div>
+    </div>
+
+    <hr>
+
+    <footer>
+        <nav class="foot-bar">
+            <div class="logo">
+                <img src="Logo.png" alt="AgriConnect Logo">
+            </div>
+            <ul class="foot-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Farmers</a></li>
+                <li><a href="#">Marketplace</a></li>
+                <li><a href="#">Weather</a></li>
+                <li><a href="#">AgriBusiness</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav><center>
+        <div class="social-links">
+            <a href="www.instagram.com">Instagram</a>
+            <a href="www.twitter.com">Twitter</a>
+            <a href="www.youtube.com">YouTube</a>
+        </div>
+        <div class="contact-info">
+            <p><strong>Business Enquiry:</strong> 10000</p>
+            <p><strong>Customer Support:</strong> 20000</p>
+        </div>
+        
+        <p>© Synapse Quad Team 2025-26. All Rights Reserved.</p></center>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.certifications span').forEach(span => {
+            span.addEventListener('click', function() {
+                this.classList.toggle('selected');
+            }); 
+        });
+    </script>
+
+</body>
+</html>
