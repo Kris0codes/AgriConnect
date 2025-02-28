@@ -1,0 +1,836 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f5e4;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: goldenrod;
+    padding: 15px 50px;
+}
+
+.logo img {
+    height: 80px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: darkgreen;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+}
+
+.hero-image {
+    width: 50%;
+    height: 300px;
+    background: url('p3.jpeg') no-repeat center center/cover;
+    animation: fadeInLeft 2s ease-in-out;
+}
+
+.hero-text {
+    width: 50%;
+    padding-left: 20px;
+}
+
+.hero-text h1 {
+    font-size: 36px;
+    color: #014d1c;
+}
+
+.hero-text p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Buttons */
+button {
+    background-color: #f1c40f;
+    color: #014d1c;
+    padding: 12px 24px;
+    border: 2px solid #014d1c;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: darkgreen;
+    color: white;
+    border-color: white;
+}
+
+/* Services Section */
+.services {
+    text-align: center;
+    padding: 30px;
+}
+
+.services h2 {
+    color: #014d1c;
+    font-size: 28px;
+}
+
+.service-box {
+    display: inline-block;
+    width: 250px;
+    margin: 20px;
+    text-align: center;
+}
+
+.service-box img {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.service-box img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.service-box p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.service-box a {
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.service-box a:hover {
+    color: darkgreen;
+}
+.success-stories {
+    text-align: center;
+    padding: 30px;
+}
+
+.success-stories h2 {
+    color: #014d1c;
+    font-size: 28px;
+}
+
+.success-box {
+    display: inline-block;
+    width: 250px;
+    margin: 20px;
+    text-align: center;
+}
+
+.success-box img {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.success-box img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.success-box p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.success-box a {
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.success-box a:hover {
+    color: darkgreen;
+}
+.news{
+    text-align: center;
+    padding: 30px;
+}
+
+.news h2 {
+    color: #014d1c;
+    font-size: 28px;
+}
+
+.news-box {
+    display: inline-block;
+    width: 250px;
+    margin: 20px;
+    text-align: center;
+}
+
+.news-box img {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.news-box img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.news-box p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.news-box a {
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.news-box a:hover {
+    color: darkgreen;
+}
+
+/* Animation */
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Chatbot (Fixed at Bottom Right) */
+.chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.chatbot img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.chatbot:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+/* Footer */
+footer {
+    background: goldenrod;
+    color: white;
+    padding: 30px 50px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Footer Navigation */
+.foot-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Align content to the left */
+    gap: 30px; /* Creates space between logo and links */
+}
+
+/* Footer Logo */
+.foot-bar .logo img {
+    height: 80px;
+    margin-right: 20px;
+}
+
+/* Footer Links */
+.foot-links {
+    margin-left: 200px;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-grow: .5; /* Ensures it stretches across the row */
+    justify-content: space-between; /* Spreads links evenly */
+    flex-wrap: wrap; /* Wraps to next row if needed */
+    align-items: center;
+}
+
+.foot-links li {
+    flex-grow: .5; 
+    text-align: center;
+}
+
+.foot-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease-in-out;
+}
+
+.foot-links a:hover {
+    color: darkgreen;
+}
+
+
+/* Social Media Links */
+.social-links {
+    margin: 10px 0;
+}
+
+.social-links a {
+    color: #000;
+    font-size: 18px;
+    margin-right: 15px;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.social-links a:hover {
+    color: #fff;
+}
+
+/* Copyright */
+footer p.copyright {
+    color: black;
+    margin-top: 10px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Logo Styling */
+.logo-container {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.logo-container img {
+    height: 80px;
+}
+
+/* Profile Container */
+.container {
+    width: 90%;
+    max-width: 500px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Profile Header */
+.profile-header {
+    font-size: 26px;
+    font-weight: bold;
+    color: #014d1c;
+    margin-bottom: 20px;
+}
+
+/* Profile Picture */
+.profile-picture {
+    position: relative;
+}
+
+.profile-picture img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    cursor: pointer;
+    border: 3px solid goldenrod;
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-picture img:hover {
+    transform: scale(1.1);
+}
+
+/* Profile Details */
+.profile-details {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.profile-details label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+    color: #014d1c;
+}
+
+.profile-details input,
+.profile-details textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.profile-details textarea {
+    resize: vertical;
+}
+
+/* Buttons */
+.buttons {
+    margin-top: 20px;
+}
+
+.save-btn {
+    background-color: goldenrod;
+    color: white;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.save-btn:hover {
+    background-color: darkgreen;
+    transform: scale(1.05);
+}
+
+/* Popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.popup button {
+    margin-top: 10px;
+    padding: 10px;
+    background: darkgreen;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* Container */
+.container {
+    width: 90%;
+    max-width: 700px;
+    margin: 40px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Table Styling */
+.crop-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.crop-table th {
+    background-color: goldenrod;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+.crop-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Form Elements */
+select, input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Submit Button */
+.submit-btn {
+    background-color: goldenrod;
+    color: white;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.submit-btn:hover {
+    background-color: darkgreen;
+    transform: scale(1.05);
+}
+/* Dark Green and Golden Yellow Theme */
+.btn-darkgreen {
+    background-color: #014d1c; /* Dark green */
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-darkgreen:hover {
+    background-color: goldenrod;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100%;
+    background-color: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease;
+    z-index: 20;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+/* Background */
+.bg-light {
+    background-color: #f8f5e4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Sign-In Container */
+.signin-container {
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+}
+
+/* Logo */
+.signin-logo {
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+/* Heading */
+.signin-container h2 {
+    color: #014d1c;
+    margin-bottom: 20px;
+}
+
+/* Social Login Buttons */
+.social-login {
+    margin-top: 20px;
+}
+
+/* Facebook Login Button */
+.fb-login-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+/* Background */
+.bg-light {
+    background-color: #f8f5e4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Login Container */
+.login-container {
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+}
+
+/* Logo */
+.login-logo {
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+/* Heading */
+.login-container h2 {
+    color: #014d1c;
+    margin-bottom: 20px;
+}
+
+/* Input Group */
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    color: #014d1c;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.login-btn {
+    background-color: darkgreen;
+    color: white;
+}
+
+.login-btn:hover {
+    background-color: goldenrod';
+}
+
+.signup-btn {
+    background-color: darkgreen;
+    color: white;
+}
+
+.signup-btn:hover {
+    background-color: goldenrod;
+}
+
+/* Create Account Button */
+.create-account {
+    margin-top: 15px;
+}
+
+.create-btn {
+    width: 100%;
+    background-color: #014d1c;
+    color: white;
+}
+
+.create-btn:hover {
+    background-color: goldenrod;
+}
+/* Background */
+.bg-light {
+    background-color: #f8f5e4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Container */
+.container {
+    width: 50%;
+    max-width: 600px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 100px auto 20px;
+}
+
+
+.crops-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+}
+
+/* Crop Card */
+.crop-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    width: 250px;
+}
+
+.crop-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.crop-card h3 {
+    color: #014d1c;
+    margin-top: 10px;
+}
+
+.crop-card p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+/* Contact Farmer Button */
+.contact-btn {
+    background-color: darkgreen;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.contact-btn:hover {
+    background-color: goldenrod;
+}
+
+/* Add to Cart Button */
+.cart-btn {
+    background-color: goldenrod;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 5px;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+.cart-btn:hover {
+    background-color: darkgreen;
+}
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+input, button {
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.forecast {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.forecast-item {
+    background: #dff0d8;
+    padding: 10px;
+    border-radius: 5px;
+    width: 18%;
+    font-size: 14px;
+}
+
+#map {
+    height: 300px;
+    margin-top: 20px;
+}
+
