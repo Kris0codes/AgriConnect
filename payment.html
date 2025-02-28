@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Payment Type</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .payment-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .payment-option:hover {
+            background: #ddd;
+        }
+        .icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Select Your Payment Type:</h2>
+        <div class="payment-option" onclick="location.href='netbanking.html'">
+            <span class="icon">🏦</span> Net Banking
+        </div>
+        <div class="payment-option" onclick="location.href='googlepay.html'">
+            <span class="icon">🇬</span> Google Pay
+        </div>
+        <div class="payment-option" onclick="window.location.href='https://paytm.com/pay?amount=200'">
+            <span class="icon">💳</span> Paytm
+        </div>
+    </div>
+</body>
+</html>
+

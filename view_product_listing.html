@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriConnect - Product Listing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .header {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .product-card {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .details {
+            font-size: 16px;
+        }
+        .view-button {
+            background: goldenrod;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .view-button:hover {
+            background: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">AgriConnect - Product Listing</div>
+        
+        <div class="product-card">
+            <div class="details">
+                <p><strong>Name:</strong>Mr. Rakesh Gowda</p>
+                <p><strong>Product:</strong>Corn</p>
+                <p><strong>Min-Max quantity:</strong> 50-100</p>
+                <p><strong>Price:10-30</strong></p>
+            </div>
+            <button class="view-button" onclick="location.href='product_details.html'">View Details →</button>
+        </div>
+        
+        <div class="product-card">
+            <div class="details">
+                <p><strong>Name:Mr. Lokesh Gopi</strong> </p>
+                <p><strong>Product:</strong>Apple</p>
+                <p><strong>Min-Max:</strong> 60-100</p>
+                <p><strong>Price:</strong>30-45</p>
+            </div>
+            <button class="view-button" onclick="location.href='product_details.html'">View Details →</button>
+        </div>
+    </div>
+</body>
+</html>
+

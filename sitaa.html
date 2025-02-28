@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitaa - AgriConnect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .chat-container {
+            width: 350px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-header {
+            background: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .chat-box {
+            padding: 15px;
+            height: 300px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+        .chat-message {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .sitaa-message {
+            background: #e1f5e1;
+            align-self: flex-start;
+        }
+        .farmer-message {
+            background: #d1e7ff;
+            align-self: flex-end;
+        }
+        .chat-input {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            background: white;
+        }
+        .chat-input button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .chat-input input {
+            flex-grow: 1;
+            padding: 8px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
+        .chat-input .send-btn {
+            background: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+        }
+        .chat-input img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">Sitaa - AgriConnect</div>
+        <div class="chat-box" id="chatBox">
+            <div class="chat-message sitaa-message">Hi, welcome to AgriConnect!</div>
+            <div class="chat-message sitaa-message">How can I assist you today?</div>
+        </div>
+        <div class="chat-input">
+            <button onclick="startVoiceInput()">🎤</button>
+            <img src="chatbot-sita.jpg" alt="Chat Bot">
+            <input type="text" id="messageInput" placeholder="Type your message...">
+            <button class="send-btn" onclick="sendMessage()">▶</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            let input = document.getElementById('messageInput');
+            let message = input.value.trim();
+            if (message === "") return;
+            
+            let chatBox = document.getElementById('chatBox');
+            let farmerMessage = document.createElement('div');
+            farmerMessage.classList.add('chat-message', 'farmer-message');
+            farmerMessage.innerText = message;
+            chatBox.appendChild(farmerMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            input.value = "";
+        }
+
+        function startVoiceInput() {
+            alert("Voice input feature coming soon!");
+        }
+    </script>
+</body>
+</html>

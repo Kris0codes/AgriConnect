@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriConnect - Recent Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .sub-header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            text-align: center;
+            background: #4CAF50;
+            color: white;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            display: inline-block;
+        }
+        .pending { background: orange; }
+        .processing { background: blue; }
+        .delivered { background: green; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">AgriConnect</div>
+        <div class="sub-header">Recent Orders</div>
+        <table>
+            <tr>
+                <th>Order ID</th>
+                <th>Farmer</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>#01-34</td>
+                <td>balachandra  farmers</td>
+                <td>25, Feb 2025</td>
+                <td>₹200</td>
+                <td><span class="status pending">Pending</span></td>
+            </tr>
+            <tr>
+                <td>#F6-39</td>
+                <td>shri gopi brothers land</td>
+                <td>27, Feb 2025</td>
+                <td>₹250</td>
+                <td><span class="status processing">Processing</span></td>
+            </tr>
+            <tr>
+                <td>#8k-32</td>
+                <td>rama farms</td>
+                <td>20, Feb 2025</td>
+                <td>₹230</td>
+                <td><span class="status delivered">Delivered</span></td>
+            </tr>
+            <tr>
+                <td>#69-PG</td>
+                <td>sheetal business</td>
+                <td>21, Feb 2025</td>
+                <td>₹100</td>
+                <td><span class="status delivered">Delivered</span></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

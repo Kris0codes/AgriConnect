@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | AgriConnect</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script async defer crossorigin="anonymous" 
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0&appId=YOUR_FACEBOOK_APP_ID&autoLogAppEvents=1">
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+
+    <!-- Sign In Container -->
+    <div class="signin-container">
+        <img src="Logo.png" alt="AgriConnect Logo" class="signin-logo">
+        <h2>Sign In</h2>
+
+        <div class="social-login">
+            <!-- Google Sign-In -->
+            <div id="g_id_onload"
+                data-client_id="YOUR_GOOGLE_CLIENT_ID"
+                data-context="signin"
+                data-ux_mode="popup"
+                data-callback="handleCredentialResponse"
+                data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin" data-type="standard"></div>
+
+            <!-- Facebook Sign-In -->
+            <div class="fb-login-container">
+                <div class="fb-login-button" 
+                    data-width="250"
+                    data-size="large"
+                    data-button-type="continue_with"
+                    data-layout="rounded"
+                    data-auto-logout-link="false"
+                    data-use-continue-as="true">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleCredentialResponse(response) {
+            console.log("Google ID Token:", response.credential);
+            alert("Sign-in successful!");
+            // Redirect or process login response here
+        }
+
+        // Facebook SDK Initialization
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: 'YOUR_FACEBOOK_APP_ID',
+                cookie: true,
+                xfbml: true,
+                version: 'v13.0'
+            });
+        };
+    </script>
+
+</body>
+</html>

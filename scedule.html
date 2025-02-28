@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            text-align: left;
+        }
+        .calendar {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .calendar th, .calendar td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            width: 14.28%; /* Ensures equal width for all cells */
+            height: 60px; /* Ensures equal height for all cells */
+        }
+        .upcoming-events {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            text-align: left;
+        }
+        .upcoming-events h3 {
+            margin-bottom: 10px;
+        }
+        .event-item {
+            padding: 5px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Schedule</h1>
+        <h2 style="text-align: left;">March 2025</h2>
+        <table class="calendar">
+            <tr>
+                <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+            </tr>
+            <tr>
+                <td></td><td></td><td></td><td></td><td></td><td></td><td>1</td>
+            </tr>
+            <tr>
+                <td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7<br><span style="color: red;">Harvest</span></td><td>8</td>
+            </tr>
+            <tr>
+                <td>9</td><td>10</td><td>11</td><td>12<br><span style="color: green;">Gov. Holiday</span></td><td>13</td><td>14</td><td>15</td>
+            </tr>
+            <tr>
+                <td>16<br><span style="color: red;">Delivery Corn</span></td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td>
+            </tr>
+        </table>
+        <div class="upcoming-events">
+            <h3>Upcoming Events</h3>
+            <div class="event-item"><strong>March 7:</strong> Harvest</div>
+            <div class="event-item"><strong>March 12:</strong> Government Holiday</div>
+            <div class="event-item"><strong>March 16:</strong> Delivery Corn</div>
+        </div>
+    </div>
+</body>
+</html>

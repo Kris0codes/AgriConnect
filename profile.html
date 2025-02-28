@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Logo at the Top -->
+    <div class="logo-container">
+        <img src="Logo.png" alt="AgriConnect Logo">
+    </div>
+
+    <div class="container">
+        <div class="profile-header">Profile</div>
+        <div class="profile-picture">
+            <img id="profile-pic" src="https://via.placeholder.com/120" alt="Profile Picture" onclick="uploadImage()">
+            <input type="file" id="imageUpload" style="display: none;" accept="image/*" onchange="previewImage(event)">
+        </div>
+        <div class="profile-details">
+            <label>Name:</label>
+            <input type="text" placeholder="Enter your name">
+            
+            <label>Phone Number:</label>
+            <input type="text" placeholder="Enter your phone number">
+            
+            <label>Email:</label>
+            <input type="email" placeholder="Enter your email">
+            
+            <label>Location:</label>
+            <input type="text" placeholder="Enter your location">
+            
+            <label>Crops Details:</label>
+            <textarea placeholder="Enter crop details"></textarea>
+            
+            <label>Size of the Farm:</label>
+            <input type="text" placeholder="Enter farm size">
+            
+            <label>Soil Type:</label>
+            <input type="text" placeholder="Enter soil type">
+            
+            <label>Topography Details:</label>
+            <textarea placeholder="Enter topography details"></textarea>
+            
+            <label>Transportation Capabilities:</label>
+            <textarea placeholder="Enter transportation details"></textarea>
+            
+            <label>Existing Certificates:</label>
+            <textarea placeholder="Enter certificates details"></textarea>
+            
+            <label>Preferred Contact Method:</label>
+            <input type="text" placeholder="Enter preferred contact method">
+        </div>
+        <div class="buttons">
+            <button class="save-btn" onclick="showPopup()">Save and Update</button>
+        </div>
+    </div>
+    
+    <div id="popup" class="popup">
+        <p>Account has been updated successfully!</p>
+        <button onclick="closePopup()">OK</button>
+    </div>
+    
+    <script>
+        function showPopup() {
+            document.getElementById("popup").style.display = "block";
+        }
+        
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+        
+        function uploadImage() {
+            document.getElementById("imageUpload").click();
+        }
+        
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById("profile-pic");
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+
+</body>
+</html>

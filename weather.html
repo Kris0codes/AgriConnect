@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriConnect - Weather Forecast</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .forecast {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .forecast-item {
+            background: #dff0d8;
+            padding: 10px;
+            border-radius: 5px;
+            width: 18%;
+            font-size: 14px;
+        }
+        #map {
+            height: 300px;
+            margin-top: 20px;
+        }
+    </style>
+    <!-- Leaflet.js for Interactive Map -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+</head>
+<body>
+    <div class="container">
+        <h1>🌾 AgriConnect - Weather Forecast</h1>
+        <input type="text" id="location" placeholder="Enter location" value="Chowkanahalli, Yelhanka">
+        <button onclick="fetchWeather()">Get Weather</button>
+        <button onclick="getLocationAndFetchWeather()">📍 Use My Location</button>
+
+        <div id="weather-info"></div>
+
+        <h2>📅 5-Day Forecast</h2>
+        <div class="forecast" id="forecast"></div>
+
+        <h2>🛰️ Weather Map</h2>
+        <div id="map"></div>
+    </div>
+
+    <script>
+        const API_KEY = "YOUR_OPENWEATHERMAP_API_KEY";
+
+        async function fetchWeather() {
+            const location = document.getElementById("location").value;
+            if (!location) return alert("Please enter a location.");
+
+            document.getElementById("weather-info").innerHTML = "<p>Loading...</p>";
+            document.getElementById("forecast").innerHTML = "<p>Loading...</p>";
+
+            try {
+                const weatherRes = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`);
+                if (!weatherRes.ok) throw new Error("City not found");
+                const weatherData = await weatherRes.json();
+
+                const forecastRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${API_KEY}&units=metric`);
+                if (!forecastRes.ok) throw new Error("Forecast data unavailable");
+                const forecastData = await forecastRes.json();
+
+                updateUI(weatherData, forecastData);
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        async function fetchWeatherByCoords(lat, lon) {
+            document.getElementById("weather-info").innerHTML = "<p>Loading...</p>";
+            document.getElementById("forecast").innerHTML = "<p>Loading...</p>";
+
+            try {
+                const weatherRes = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`);
+                const weatherData = await weatherRes.json();
+
+                const forecastRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`);
+                const forecastData = await forecastRes.json();
+
+                updateUI(weatherData, forecastData);
+            } catch (error) {
+                alert("Could not fetch weather data.");
+            }
+        }
+
+        function getLocationAndFetchWeather() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    fetchWeatherByCoords(lat, lon);
+                }, () => {
+                    alert("Geolocation permission denied. Please enter a location manually.");
+                });
+            } else {
+                alert("Geolocation is not supported by your browser.");
+            }
+        }
+
+        function updateUI(weatherData, forecastData) {
+            document.getElementById("weather-info").innerHTML = `
+                <h2>${weatherData.name}</h2>
+                <p>${weatherData.weather[0].description}</p>
+                <h3>${weatherData.main.temp}°C</h3>
+                <p>Humidity: ${weatherData.main.humidity}%</p>
+                <p>Wind: ${weatherData.wind.speed} km/h</p>
+                <p>Precipitation: ${weatherData.rain ? weatherData.rain["1h"] + "mm" : "0mm"}</p>
+                <p>UV Index: High</p>
+            `;
+
+            let dailyForecast = {};
+            forecastData.list.forEach(entry => {
+                let date = new Date(entry.dt * 1000).toLocaleDateString();
+                if (!dailyForecast[date]) {
+                    dailyForecast[date] = entry;
+                }
+            });
+
+            document.getElementById("forecast").innerHTML = Object.values(dailyForecast).slice(0, 5).map(day => `
+                <div class="forecast-item">
+                    <p>${new Date(day.dt * 1000).toLocaleDateString()}</p>
+                    <p>${day.main.temp}°C</p>
+                    <p>${day.weather[0].description}</p>
+                </div>
+            `).join("");
+
+            loadMap(weatherData.coord.lat, weatherData.coord.lon);
+        }
+
+        let map;
+        let marker;
+
+        function loadMap(lat = 13.1, lon = 77.6) {
+            if (!map) {
+                map = L.map("map").setView([lat, lon], 10);
+                L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+                marker = L.marker([lat, lon]).addTo(map);
+            } else {
+                map.setView([lat, lon], 10);
+                marker.setLatLng([lat, lon]);
+            }
+        }
+
+        // Auto-refresh weather every 10 minutes
+        setInterval(() => {
+            const location = document.getElementById("location").value;
+            if (location) fetchWeather();
+        }, 600000); // 600000ms = 10 minutes
+
+        // Load map on first load
+        document.addEventListener("DOMContentLoaded", () => {
+            loadMap();
+        });
+    </script>
+</body>
+</html>
