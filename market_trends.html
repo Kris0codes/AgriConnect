@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriConnect Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js for Graphs -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 p-4">
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="Logo.png" alt="AgriConnect Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="list-product.html">Marketplace</a></li>
+            <li><a href="weather.html">Weather</a></li>
+            <li><a href="contactUs.html">Contact</a></li>
+            <li><a href="#">EN/KN</a></li>
+        </ul>
+    </nav>
+
+    <hr>
+
+    <!-- Dashboard Content -->
+    <div class="container mx-auto mt-6">
+        <h2 class="text-2xl font-semibold text-darkgreen">Welcome Back, Farmer</h2>
+        <p class="text-gray-600">Sunny, 24°C</p>
+    </div>
+
+    <!-- Graphs Section -->
+    <div class="bg-white p-6 rounded-lg shadow mt-6">
+        <h3 class="text-xl font-semibold text-darkgreen">Market Trends</h3>
+        <canvas id="marketChart"></canvas>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow mt-6">
+        <h3 class="text-xl font-semibold text-darkgreen">Weather Analysis</h3>
+        <canvas id="weatherChart"></canvas>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <nav class="foot-bar">
+            <div class="logo">
+                <img src="Logo.png" alt="AgriConnect Logo">
+            </div>
+            <ul class="foot-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Farmers</a></li>
+                <li><a href="#">Marketplace</a></li>
+                <li><a href="#">Weather</a></li>
+                <li><a href="#">AgriBusiness</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="contact-info">
+            <p><strong>Business Enquiry:</strong> 10000</p>
+            <p><strong>Customer Support:</strong> 20000</p>
+        </div>
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+            <a href="#">YouTube</a>
+        </div>
+        <p class="copyright">© Synapse Quad Team 2025-26. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Charts -->
+    <script>
+        // Market Trends Chart
+        const marketCtx = document.getElementById('marketChart').getContext('2d');
+        new Chart(marketCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [{
+                    label: 'Wheat Price (₹ per kg)',
+                    data: [20, 22, 25, 23, 27],
+                    borderColor: 'goldenrod',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // Weather Analysis Chart
+        const weatherCtx = document.getElementById('weatherChart').getContext('2d');
+        new Chart(weatherCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                datasets: [{
+                    label: 'Temperature (°C)',
+                    data: [24, 20, 18, 16, 25],
+                    backgroundColor: ['#006400', '#006400', '#006400', '#006400', '#DAA520']
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

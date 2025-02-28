@@ -3,28 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgriConnect</title>
+    <title>Login | AgriConnect</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1 align="center"> login page </h1>
-    <center> <form> 
-        <table>
-            <tr>
-                <td> <label id="name">Name</label> </td>
-                <td> <input id="name" type="text" placeholder="enter your name" required> </td>
-            </tr>
-            <tr>
-                <td> <label id="password">Password</label> </td>
-                <td> <input id="password" type="password" placeholder="enter your password" required> </td>
-            </tr>
-            <tr>
-                <td><label type="button" value="login in"></td>
-                <td><label type="button" value="sign in"></td>
-                </tr>
-            <tr>
-                <td colspan="2"> <label type="button" value="Create Account"> </td>
-            </tr>
-        </table>
-        </form></center>
+<body class="bg-light">
+
+    <!-- Login Container -->
+    <div class="login-container">
+        <img src="Logo.png" alt="AgriConnect Logo" class="login-logo">
+        <h2>Login</h2>
+
+        <form>
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input id="name" type="text" placeholder="Enter your name" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input id="password" type="password" placeholder="Enter your password" required>
+            </div>
+
+            <div class="buttons">
+                <button type="submit" class="login-btn">Log In</button>
+                <button type="button" class="signup-btn">Sign Up</button>
+            </div>
+
+            <div class="create-account">
+                <button type="button" class="create-btn">Create Account</button>
+            </div>
+        </form>
+    </div>
+
 </body>
 </html>
