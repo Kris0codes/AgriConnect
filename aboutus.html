@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | AgriConnect</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Font Awesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    .hero {
+      background: url("mainBG.jpg") no-repeat center center;
+      background-size: cover;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    .hero h1 {
+      background-color: rgba(0, 0, 0, 1);
+      padding: 15px 30px;
+      border-radius: 10px;
+    }
+
+    .developer-section {
+      background: url("https://www.transparenttextures.com/patterns/leaf.png"), linear-gradient(to right, #a8e063, #56ab2f);
+      background-blend-mode: overlay;
+      padding: 60px 0;
+    }
+
+    .dev-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: white;
+      border-radius: 15px;
+    }
+
+    .dev-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 128, 0, 0.3);
+    }
+
+    .dev-img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      object-position: center;
+    }
+  </style>
+</head>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAXWHJCoMfBOG_HAEkAmn2B59610Z1PRew",
+  authDomain: "agriconnect-e5951.firebaseapp.com",
+  projectId: "agriconnect-e5951",
+  storageBucket: "agriconnect-e5951.firebasestorage.app",
+  messagingSenderId: "778997833951",
+  appId: "1:778997833951:web:2a38072c5e4a2be93ac96a",
+  measurementId: "G-34P7ZK4HKM"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    alert("Please login first!");
+    window.location.href = "login-signin.html";
+  }
+});</script>
+
+<body>
+
+<!-- Hero Section -->
+<section class="hero">
+  <h1><i class="fas fa-leaf me-2"></i>About AgriConnect</h1>
+</section>
+
+<!-- About Content -->
+<div class="container my-5">
+  <div class="row justify-content-center text-center mb-4">
+    <div class="col-lg-8">
+      <h2>Empowering Farmers. Connecting Communities.</h2>
+      <p class="text-muted mt-3">
+        AgriConnect is a digital platform built to bridge the gap between farmers and buyers, streamline agricultural commerce, and empower rural economies through blockchain and smart technologies.
+      </p>
+    </div>
+  </div>
+
+  <div class="row text-center g-4">
+    <div class="col-md-4">
+      <div class="p-4 border rounded shadow-sm h-100">
+        <i class="fas fa-seedling fa-2x mb-3 text-success"></i>
+        <h5>Our Mission</h5>
+        <p class="text-muted">To build transparent, efficient, and secure systems for agricultural trade and empower farmers with access to fair markets and modern tools.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-4 border rounded shadow-sm h-100">
+        <i class="fas fa-network-wired fa-2x mb-3 text-primary"></i>
+        <h5>Our Vision</h5>
+        <p class="text-muted">To become the go-to agri-tech ecosystem where innovation meets sustainability, and communities thrive together.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-4 border rounded shadow-sm h-100">
+        <i class="fas fa-users fa-2x mb-3 text-warning"></i>
+        <h5>Our Team</h5>
+        <p class="text-muted">We are a passionate group of developers, farmers, and entrepreneurs dedicated to building a better future for agriculture using technology.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Developer Section -->
+<section class="developer-section text-white">
+  <div class="container">
+    <h2 class="text-center text-white mb-5">Meet Our Developers</h2>
+    <div class="row g-4 justify-content-center">
+
+      <!-- Developer Card 1 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card text-center dev-card h-100 p-3">
+          <div class="card-body">
+            <img src="trisha.jpg" class="rounded-circle mb-3 img-fluid dev-img" alt="Trisha" />
+            <h5 class="card-title">Trisha</h5>
+            <p class="card-text fst-italic">"Turning coffee into scalable systems."</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Developer Card 2 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card text-center dev-card h-100 p-3">
+          <div class="card-body">
+            <img src="vinuta.jpg" class="rounded-circle mb-3 img-fluid dev-img" alt="Vinuta" />
+            <h5 class="card-title">Vinuta</h5>
+            <p class="card-text fst-italic">"Building bridges between code and people."</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Developer Card 3 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card text-center dev-card h-100 p-3">
+          <div class="card-body">
+            <img src="krishna.jpg" class="rounded-circle mb-3 img-fluid dev-img" alt="Krishna" />
+            <h5 class="card-title">Krishna</h5>
+            <p class="card-text fst-italic">"Code is like poetry it has to flow."</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Developer Card 4 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card text-center dev-card h-100 p-3">
+          <div class="card-body">
+            <img src="bevan.jpg" class="rounded-circle mb-3 img-fluid dev-img" alt="Bevan" />
+            <h5 class="card-title">Bevan</h5>
+            <p class="card-text fst-italic">"Designing the future, one line at a time."</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+  <small>&copy; 2025 AgriConnect. All rights reserved.</small>
+</footer>
+
+<!-- Bootstrap JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

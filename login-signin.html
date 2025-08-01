@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AgriConnect - Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+  <style>
+    body {
+      background-image: url(mainBG.jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-color: #014034;
+      font-family: 'Playfair Display', serif;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    .form-container {
+      max-width: 450px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .toggle-link {
+      cursor: pointer;
+      color: #007bff;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<!-- Firebase SDK for Auth -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+  // Your Firebase config
+  const firebaseConfig = {
+  apiKey: "AIzaSyAXWHJCoMfBOG_HAEkAmn2B59610Z1PRew",
+  authDomain: "agriconnect-e5951.firebaseapp.com",
+  projectId: "agriconnect-e5951",
+  storageBucket: "agriconnect-e5951.firebasestorage.app",
+  messagingSenderId: "778997833951",
+  appId: "1:778997833951:web:2a38072c5e4a2be93ac96a",
+  measurementId: "G-34P7ZK4HKM"
+};
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // Login handler
+  const loginForm = document.getElementById("login-form");
+
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = loginForm.email.value;
+    const password = loginForm.password.value;
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      alert("Login successful!");
+      window.location.href = "home.html"; // Redirect to homepage
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Login failed: " + error.message);
+    }
+  });
+  import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+const forgotPasswordLink = document.getElementById("forgot-password-link");
+
+forgotPasswordLink.addEventListener("click", async () => {
+  const email = prompt("Enter your email to reset password:");
+
+  if (email) {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      alert("Password reset email sent. Please check your inbox.");
+    } catch (error) {
+      console.error("Password reset error:", error);
+      alert("Error: " + error.message);
+    }
+  }
+});
+
+</script>
+<!-- Google Translate -->
+<div id="google_translate_element" style="position: absolute; top: 40px; right: 10px; z-index: 1000; background-color: white; border: 1px solid black; padding: 5px;"></div>
+
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'hi,ta,te,bn,ml,kn,mr,gu,pa,or,en',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
+</script>
+<body>
+
+  <div class="container mt-5">
+    <div class="form-container">
+      <h3 class="text-center mb-4">Login to AgriConnect</h3>
+
+      <!-- Login Form -->
+      <form id="login-form" action="home.html" method="POST">
+        <div class="form-group">
+          <label>Email address</label>
+          <input type="email" class="form-control" name="email" placeholder="Enter email" required />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control" name="password" placeholder="Password" required />
+        </div>
+        <button type="submit" class="btn btn-success btn-block">Login</button>
+        <p class="text-center mt-2">
+          <a href="#" class="toggle-link" id="forgot-password-link">Forgot Password?</a>
+        </p>
+        
+        <p class="text-center mt-3">
+          Don't have an account? 
+          <a href="create_account.html" class="toggle-link">Sign up</a>
+        </p>
+
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgriConnect - Weather Forecast</title>
+
+  <!-- Playfair Display Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <style>
+    body {
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(to bottom right, #e6ffe6, #ffffcc);
+      margin: 0;
+      padding: 20px;
+      color: #2d472c;
+      background-image: url(mainBG.jpg);
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 128, 0, 0.2);
+    }
+
+    h1, h2 {
+      color: #2d472c;
+      margin-bottom: 10px;
+    }
+
+    input, button {
+      padding: 12px;
+      margin: 10px 5px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-family: 'Playfair Display', serif;
+    }
+
+    input {
+      width: 60%;
+    }
+
+    button {
+      background-color: #5ba150;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #4a8c42;
+    }
+
+    .forecast {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .forecast-item {
+      background: #f0fff0;
+      padding: 15px;
+      border-radius: 8px;
+      width: 30%;
+      margin-bottom: 15px;
+      box-shadow: 0 0 5px rgba(0, 100, 0, 0.1);
+    }
+
+    #map {
+      height: 300px;
+      border-radius: 10px;
+      margin-top: 20px;
+      border: 2px solid #aaddaa;
+    }
+
+    @media (max-width: 768px) {
+      .forecast-item {
+        width: 45%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      input {
+        width: 100%;
+      }
+      .forecast-item {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+    <!-- Google Translate -->
+  <div id="google_translate_element" style="position: absolute; top: 40px; right: 10px; z-index: 1000; background-color: white; border: 1px solid black; padding: 5px;"></div>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'hi,ta,te,bn,ml,kn,mr,gu,pa,or,en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <div class="container">
+    <h1>AgriConnect - Weather Forecast</h1>
+    <input type="text" id="location" placeholder="Enter location" value="Chowkanahalli, Yelahanka" />
+    <button onclick="fetchWeather()">Get Weather</button>
+    <button onclick="getLocationAndFetchWeather()">📍 Use My Location</button>
+
+    <div id="weather-info"></div>
+
+    <h2>5-Day Forecast</h2>
+    <div class="forecast" id="forecast"></div>
+
+    <h2>🛰️ Weather Map</h2>
+    <div id="map"></div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Firebase Auth Check -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAXWHJCoMfBOG_HAEkAmn2B59610Z1PRew",
+      authDomain: "agriconnect-e5951.firebaseapp.com",
+      projectId: "agriconnect-e5951",
+      storageBucket: "agriconnect-e5951.appspot.com",
+      messagingSenderId: "778997833951",
+      appId: "1:778997833951:web:2a38072c5e4a2be93ac96a",
+      measurementId: "G-34P7ZK4HKM"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        alert("Please login first!");
+        window.location.href = "login-signin.html";
+      }
+    });
+  </script>
+
+  <!-- Weather Script -->
+  <script>
+    const API_KEY = "9f769b898f25e9e5685dfaf9e1ddcf71"; // Replace with actual API key
+
+    async function fetchWeather() {
+      const location = document.getElementById("location").value;
+      if (!location) return alert("Please enter a location.");
+
+      document.getElementById("weather-info").innerHTML = "<p>Loading...</p>";
+      document.getElementById("forecast").innerHTML = "<p>Loading...</p>";
+
+      try {
+        const weatherRes = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`);
+        if (!weatherRes.ok) throw new Error("City not found");
+        const weatherData = await weatherRes.json();
+
+        const forecastRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${API_KEY}&units=metric`);
+        if (!forecastRes.ok) throw new Error("Forecast data unavailable");
+        const forecastData = await forecastRes.json();
+
+        updateUI(weatherData, forecastData);
+      } catch (error) {
+        alert(error.message);
+      }
+    }
+
+    async function fetchWeatherByCoords(lat, lon) {
+      document.getElementById("weather-info").innerHTML = "<p>Loading...</p>";
+      document.getElementById("forecast").innerHTML = "<p>Loading...</p>";
+
+      try {
+        const weatherRes = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`);
+        const weatherData = await weatherRes.json();
+
+        const forecastRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`);
+        const forecastData = await forecastRes.json();
+
+        updateUI(weatherData, forecastData);
+      } catch (error) {
+        alert("Could not fetch weather data.");
+      }
+    }
+
+    function getLocationAndFetchWeather() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          fetchWeatherByCoords(lat, lon);
+        }, () => {
+          alert("Geolocation permission denied. Please enter a location manually.");
+        });
+      } else {
+        alert("Geolocation is not supported by your browser.");
+      }
+    }
+
+    function updateUI(weatherData, forecastData) {
+      document.getElementById("weather-info").innerHTML = `
+        <h2>${weatherData.name}</h2>
+        <p>${weatherData.weather[0].description}</p>
+        <h3>${weatherData.main.temp}°C</h3>
+        <p>Humidity: ${weatherData.main.humidity}%</p>
+        <p>Wind: ${weatherData.wind.speed} km/h</p>
+        <p>Precipitation: ${weatherData.rain ? weatherData.rain["1h"] + " mm" : "0 mm"}</p>
+        <p>UV Index: High</p>
+      `;
+
+      let dailyForecast = {};
+      forecastData.list.forEach(entry => {
+        let date = new Date(entry.dt * 1000).toLocaleDateString();
+        if (!dailyForecast[date]) {
+          dailyForecast[date] = entry;
+        }
+      });
+
+      document.getElementById("forecast").innerHTML = Object.values(dailyForecast).slice(0, 5).map(day => `
+        <div class="forecast-item">
+          <p>${new Date(day.dt * 1000).toLocaleDateString()}</p>
+          <p>${day.main.temp}°C</p>
+          <p>${day.weather[0].description}</p>
+        </div>
+      `).join("");
+
+      loadMap(weatherData.coord.lat, weatherData.coord.lon);
+    }
+
+    let map;
+    let marker;
+
+    function loadMap(lat = 13.1, lon = 77.6) {
+      if (!map) {
+        map = L.map("map").setView([lat, lon], 10);
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+        marker = L.marker([lat, lon]).addTo(map);
+      } else {
+        map.setView([lat, lon], 10);
+        marker.setLatLng([lat, lon]);
+      }
+    }
+
+    setInterval(() => {
+      const location = document.getElementById("location").value;
+      if (location) fetchWeather();
+    }, 600000); // 10 min auto-refresh
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadMap();
+    });
+  </script>
+</body>
+</html>

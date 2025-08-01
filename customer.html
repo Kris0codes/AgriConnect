@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Retailer Dashboard - AgriConnect</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .dashboard-header {
+      background-color: #014034;
+      color: white;
+      padding: 15px;
+    }
+    .dashboard-section {
+      padding: 20px;
+    }
+    .card {
+      border-radius: 15px;
+    }
+    .card-title {
+      font-weight: bold;
+    }
+    .fixed-footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #014034;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+    }
+    .navbar {
+      background-color: #014034 !important;
+    }
+    .navbar .navbar-text, .navbar .fa-bell {
+      color: white;
+    }
+  </style>
+</head>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+  
+  const firebaseConfig = {
+  apiKey: "AIzaSyAXWHJCoMfBOG_HAEkAmn2B59610Z1PRew",
+  authDomain: "agriconnect-e5951.firebaseapp.com",
+  projectId: "agriconnect-e5951",
+  storageBucket: "agriconnect-e5951.firebasestorage.app",
+  messagingSenderId: "778997833951",
+  appId: "1:778997833951:web:2a38072c5e4a2be93ac96a",
+  measurementId: "G-34P7ZK4HKM"
+};
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      alert("Please login first!");
+      window.location.href = "login-signin.html";
+    }
+  });</script>
+<body>
+
+  <!-- Navbar -->
+
+    <nav class="navbar navbar-expand-lg navbar-light px-4">
+        <div class="d-flex align-items-center">
+          <img src="mainlogo.png" alt="Logo" width="40" height="40" class="mr-2" style="border-radius: 50%;">
+        </div>
+        <a class="navbar-brand font-weight-bold" href="home.html" style="color: #f5f5f5;">AgriConnect</a>
+    <div class="ml-auto d-flex align-items-center">
+      <span class="navbar-text mr-3">Hello, <strong id="retailerName">Retailer</strong></span>
+      <div class="position-relative">
+        <i class="fas fa-bell fa-lg text-white" id="retailerNotifIcon" style="cursor: pointer;"></i>
+        <div id="retailerNotifBox" class="card shadow" style="position: absolute; right: 0; top: 30px; width: 250px; display: none; z-index: 1000;">
+          <div class="card-body p-2">
+            <h6 class="text-center border-bottom pb-2 mb-2">Updates from Farmers</h6>
+            <div class="message mb-2">
+              <strong>Farmer X:</strong>
+              <p class="mb-0">Fresh tomatoes just added!</p>
+            </div>
+            <div class="message mb-2">
+              <strong>Farmer Y:</strong>
+              <p class="mb-0">Discount on rice bulk orders.</p>
+            </div>
+            <div class="message text-center">
+              <a href="#" class="btn btn-sm btn-outline-success">View All</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <script>
+    function submitSupportForm() {
+
+      window.location.href = "buy.html";
+    }
+  </script>
+  <script>
+    function submitSupportForm1() {
+      
+  
+      
+      window.location.href = "buy.html";
+    }
+  </script>
+  <!-- Google Translate -->
+  <div id="google_translate_element" style="position: absolute; top: 40px; right: 10px; z-index: 1000; background-color: white; border: 1px solid black; padding: 5px;"></div>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'hi,ta,te,bn,ml,kn,mr,gu,pa,or,en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <!-- Main Dashboard -->
+  <div class="container dashboard-section">
+    <div class="weather-box bg-light rounded p-3 my-3 d-flex justify-content-between align-items-center">
+      <div><i class="fas fa-sun"></i> Sunny, 25°C</div>
+      <div class="d-flex gap-3">
+        <div class="d-grid w-50 mx-auto">
+          <button type="button" class="btn btn-success submit-btn" onclick="submitSupportForm()">
+            New Order
+          </button>
+        </div>
+        <div class="d-grid w-50 mx-auto">
+          <button type="button" class="btn btn-success submit-btn" onclick="submitSupportForm1()">
+            Check List
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-md-4 mb-3">
+        <div class="card p-3">
+          <div class="card-title">Pending Orders</div>
+          <h4>5</h4>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card p-3">
+          <div class="card-title">Total Spent</div>
+          <h4>₹ 12,500</h4>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card p-3">
+          <div class="card-title">Orders Received</div>
+          <h4>8</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="my-4">
+      <h6>Recent Purchases</h6>
+      <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Product</th>
+            <th>Farmer</th>
+            <th>Quantity</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Wheat</td>
+            <td>Farmer A</td>
+            <td>100 kg</td>
+            <td><span class="badge badge-success">Delivered</span></td>
+          </tr>
+          <tr>
+            <td>Potatoes</td>
+            <td>Farmer B</td>
+            <td>200 kg</td>
+            <td><span class="badge badge-warning">Pending</span></td>
+          </tr>
+          <tr>
+            <td>Tomatoes</td>
+            <td>Farmer C</td>
+            <td>150 kg</td>
+            <td><span class="badge badge-danger">Cancelled</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+ 
+  
+
+  <!-- Scripts -->
+  <script>
+    // Set retailer name from localStorage
+    const retailer = localStorage.getItem('agriRetailer');
+    if (retailer) {
+      document.getElementById('retailerName').textContent = retailer;
+    }
+
+    // Toggle notifications
+    const notifIcon = document.getElementById('retailerNotifIcon');
+    const notifBox = document.getElementById('retailerNotifBox');
+
+    notifIcon.addEventListener('click', () => {
+      notifBox.style.display = notifBox.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!notifIcon.contains(event.target) && !notifBox.contains(event.target)) {
+        notifBox.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+<footer class="text-white pt-5 pb-4" style="background-color: #014034;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="d-flex align-items-center">
+            <img src="mainlogo.png" alt="Logo" width="40" height="40" class="mr-2" style="border-radius: 50%;">
+            <h5 class="mb-0 ml-2">AgriConnect</h5>
+          </div>
+          <p class="mt-3">Connecting Farmers & Buyers Seamlessly</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h6 class="text-uppercase mb-3">Contact Us</h6>
+          <p>Email: <a href="mailto:business@agriconnect.com" class="text-white">business@agriconnect.com</a></p>
+          <p>Phone 1: <a href="tel:+911234567890" class="text-white">+91 12345 67890</a></p>
+          <p>Phone 2: <a href="tel:+919876543210" class="text-white">+91 98765 43210</a></p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h6 class="text-uppercase mb-3">Quick Actions</h6>
+          <a href="#complaint" class="btn btn-outline-light btn-sm mb-2">Complaint</a><br>
+          <a href="login-signin.html" class="btn btn-light btn-sm text-dark">Login / Signup</a>
+        </div>
+      </div>
+      <hr class="border-white" />
+      <div class="text-center">
+        &copy; 2025 AgriConnect. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Support Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f6fff6;
+      background-image: url(mainBG.jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+    .support-header {
+      background-color: #014034;
+      color: white;
+      padding: 2rem;
+      border-radius: 0.5rem;
+    }
+    .form-section {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 15px rgba(0, 128, 0, 0.1);
+    }
+    .submit-btn {
+      background-color: #014034;
+      border: none;
+    }
+    .submit-btn:hover {
+      background-color: #014034;
+    }
+    .custom-checkbox label {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body><!-- Google Translate -->
+  <div id="google_translate_element" style="position: absolute; top: 40px; right: 10px; z-index: 1000; background-color: white; border: 1px solid black; padding: 5px;"></div>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'hi,ta,te,bn,ml,kn,mr,gu,pa,or,en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+
+  <div class="container my-5">
+    <div class="support-header text-center mb-4">
+      <h1>We're Here to Help</h1>
+      <p>If you're facing any issues, please let us know below.</p>
+    </div>
+
+    <div class="form-section">
+      <form>
+        <!-- Common Issues -->
+        <div class="mb-4">
+          <h4 class="text-success">Select a Common Issue:</h4>
+          <div class="form-check custom-checkbox">
+            <input class="form-check-input" type="radio" name="issueType" id="loginIssue" value="login">
+            <label class="form-check-label" for="loginIssue">
+              I am not able to connect to my customer
+            </label>
+          </div>
+          <div class="form-check custom-checkbox">
+            <input class="form-check-input" type="radio" name="issueType" id="paymentIssue" value="payment">
+            <label class="form-check-label" for="paymentIssue">
+              Payment failed or not processed
+            </label>
+          </div>
+          <div class="form-check custom-checkbox">
+            <input class="form-check-input" type="radio" name="issueType" id="bugReport" value="bug">
+            <label class="form-check-label" for="bugReport">
+              My product is not getting listed
+            </label>
+          </div>
+          <div class="form-check custom-checkbox">
+            <input class="form-check-input" type="radio" name="issueType" id="otherIssue" value="other">
+            <label class="form-check-label" for="otherIssue">
+              Something else
+            </label>
+          </div>
+        </div>
+
+        <!-- Text Box for Description -->
+        <div class="mb-4">
+          <label for="userMessage" class="form-label">Describe Your Issue:</label>
+          <textarea class="form-control" id="userMessage" rows="5" placeholder="Please provide a detailed description..."></textarea>
+        </div>
+
+       <!-- Submit Button -->
+<div class="d-grid w-50 mx-auto">
+    <!-- Submit Button -->
+<div class="d-grid w-50 mx-auto">
+  <button type="button" class="btn btn-success submit-btn" onclick="submitSupportForm()">
+    Submit Issue
+  </button>
+</div>
+
+  </div>
+  
+      </form>
+    </div>
+  </div>
+  <script>
+    function submitSupportForm() {
+      const issue = document.querySelector('input[name="issueType"]:checked');
+      const message = document.getElementById("userMessage").value.trim();
+  
+      if (!issue || message === "") {
+        alert("Please select an issue and enter a description.");
+        return;
+      }
+  
+      // You can send this data to Firebase/Backend here if needed
+  
+      // Redirect to thank you page
+      window.location.href = "t.html";
+    }
+  </script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

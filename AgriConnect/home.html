@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgriConnect</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+    }
+    .hero {
+      background-color: #014034;
+      color: white;
+      text-align: center;
+      padding: 100px 20px 60px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 600;
+    }
+    .hero p {
+      max-width: 600px;
+      margin: 20px auto;
+      font-size: 1rem;
+    }
+    .hero .btn {
+      margin: 10px;
+      padding: 12px 30px;
+      font-weight: 500;
+      border-radius: 2px;
+    }
+    .btn-outline-light {
+      border: 1px solid white;
+      color: white;
+    }
+    .btn-orange {
+      background-color: #A03900;
+      color: white;
+    }
+    nav.navbar {
+      background-color: white;
+    }
+    nav .nav-link {
+      color: #000;
+      font-weight: 500;
+    }
+    nav .btn-orange {
+      padding: 6px 16px;
+    }
+    .hero-image {
+      width: 100%;
+      max-width: 1000px;
+      border-radius: 20px;
+      margin-top: 30px;
+    }
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+    .card-subtitle {
+      font-size: 0.85rem;
+    }
+    .card-text {
+      font-size: 0.95rem;
+      color: #333;
+    }
+    #sita-chatbot button:hover {
+      background-color: #A03900;
+    }
+    .chatbot-launch {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .chatbot-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-bottom: 8px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+      background-color: white;
+    }
+
+    .chatbot-button {
+      width: 60px;
+      height: 60px;
+      background-color: #0a9444;
+      border-radius: 50%;
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+    
+    .chatbot-button:hover {
+      transform: scale(1.1);
+    }
+    
+    /* SITA Chatbot Styles */
+    #sita-chat-window {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 350px;
+      height: 500px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+      display: none;
+      flex-direction: column;
+      z-index: 1000;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .chat-header {
+      background-color: #014034;
+      color: white;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .chat-header-title {
+      display: flex;
+      align-items: center;
+    }
+    
+    .chat-header img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+      border: 2px solid white;
+    }
+    
+    .chat-header h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+    
+    .chat-header .close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    
+    .chat-body {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background-color: #f5f5f5;
+    }
+    
+    .chat-message {
+      margin-bottom: 15px;
+      max-width: 80%;
+      padding: 10px 15px;
+      border-radius: 15px;
+      position: relative;
+      clear: both;
+    }
+    
+    .user-message {
+      background-color: #e1f5fe;
+      color: #333;
+      float: right;
+      border-bottom-right-radius: 5px;
+    }
+    
+    .bot-message {
+      background-color: white;
+      color: #333;
+      float: left;
+      border-bottom-left-radius: 5px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    
+    .chat-footer {
+      padding: 10px;
+      background-color: white;
+      border-top: 1px solid #eee;
+      display: flex;
+      align-items: center;
+    }
+    
+    .chat-input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      outline: none;
+      font-size: 14px;
+    }
+    
+    .chat-input:focus {
+      border-color: #0a9444;
+    }
+    
+    .chat-actions {
+      display: flex;
+      margin-left: 10px;
+    }
+    
+    .chat-actions button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background-color: #0a9444;
+      color: white;
+      cursor: pointer;
+      margin-left: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
+    
+    .chat-actions button:hover {
+      background-color: #078038;
+    }
+    
+    .chat-actions button i {
+      font-size: 16px;
+    }
+    
+    .chat-suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+    
+    .suggestion-chip {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 15px;
+      padding: 5px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .suggestion-chip:hover {
+      background-color: #014034;
+      color: white;
+      border-color: #014034;
+    }
+    
+    .typing-indicator {
+      display: inline-block;
+      padding: 10px 15px;
+      background-color: #f0f0f0;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      float: left;
+      clear: both;
+    }
+    
+    .typing-indicator span {
+      height: 8px;
+      width: 8px;
+      background-color: #888;
+      display: inline-block;
+      border-radius: 50%;
+      margin-right: 3px;
+      animation: typing 1.3s infinite;
+    }
+    
+    .typing-indicator span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    .typing-indicator span:nth-child(3) {
+      animation-delay: 0.4s;
+      margin-right: 0;
+    }
+    
+    @keyframes typing {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .recording-indicator {
+      color: #d9534f;
+      font-size: 12px;
+      margin-left: 10px;
+      display: none;
+    }
+    
+    .welcome-message {
+      text-align: center;
+      margin: 20px 0;
+      color: #666;
+      font-size: 14px;
+    }
+    
+    /* Mission Heading */
+    .mission-heading {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #004d40;
+    }
+
+    /* Highlight Boxes */
+    .highlight-box {
+      border: 2px solid gold;
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      text-align: center;
+      font-weight: bold;
+      color: #1a1a1a;
+      background-color: #fff8e1;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      flex: 1 1 calc(33.33% - 1rem);
+      min-width: 150px;
+    }
+
+    .highlight-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px 2px rgba(255, 215, 0, 0.6);
+    }
+
+    /* Feature Boxes Container */
+    .feature-boxes {
+      display: flex;
+      gap: 1rem;
+      justify-content: start;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    /* Image Styling */
+    .image-grid img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    /* Extra padding on the mission section */
+    section.container {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    /* Responsive Image Row Fix */
+    @media (max-width: 768px) {
+      .feature-boxes {
+        justify-content: center;
+      }
+
+      .highlight-box {
+        flex: 1 1 100%;
+      }
+
+      .mission-heading {
+        font-size: 2rem;
+        text-align: center;
+      }
+
+      .text-muted {
+        text-align: center;
+      }
+
+      .col-md-6 {
+        margin-bottom: 2rem;
+      }
+      
+      #sita-chat-window {
+        width: 90%;
+        right: 5%;
+        bottom: 80px;
+      }
+    }
+
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Firebase Auth Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+  
+    const firebaseConfig = {
+      apiKey: "AIzaSyAXWHJCoMfBOG_HAEkAmn2B59610Z1PRew",
+      authDomain: "agriconnect-e5951.firebaseapp.com",
+      projectId: "agriconnect-e5951",
+      storageBucket: "agriconnect-e5951.firebasestorage.app",
+      messagingSenderId: "778997833951",
+      appId: "1:778997833951:web:2a38072c5e4a2be93ac96a",
+      measurementId: "G-34P7ZK4HKM"
+    };
+  
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+  
+    // Logout function
+    window.logout = function () {
+      signOut(auth)
+        .then(() => {
+          window.location.href = "login-signin.html";
+        })
+        .catch((error) => {
+          console.error("Logout error:", error);
+        });
+    };
+  
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        alert("Please login first!");
+        window.location.href = "login-signin.html";
+        return;
+      }
+  
+      try {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          const role = userData?.userType; // should be "farmer" or "buyer"
+  
+          // Get all target elements
+          const elements = {
+            buyCrops: document.getElementById("buyCropsNav"),
+            addItems: document.getElementById("addItemsNav"),
+            buyerBtn1: document.getElementById("buyer1"),
+            buyerBtn2: document.getElementById("buyer2"),
+            farmerPage: document.getElementById("farmerPageNav"),
+            customerPage: document.getElementById("customernav"),
+            farmerBtn1: document.getElementById("farmer1"),
+            farmerBtn2: document.getElementById("farmer2"),
+          };
+  
+          if (role === "farmer") {
+            elements.buyCrops?.style.setProperty("display", "none");
+            elements.customerPage?.style.setProperty("display", "none");
+            elements.buyerBtn1?.style.setProperty("display", "none");
+            elements.buyerBtn2?.style.setProperty("display", "none");
+          } else if (role === "buyer") {
+            elements.addItems?.style.setProperty("display", "none");
+            elements.farmerPage?.style.setProperty("display", "none");
+            elements.farmerBtn1?.style.setProperty("display", "none");
+            elements.farmerBtn2?.style.setProperty("display", "none");
+          }
+        }
+      } catch (error) {
+        console.error("Error getting user data:", error);
+      }
+    });
+  </script>
+  
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light px-4">
+    <div class="d-flex align-items-center">
+      <img src="mainlogo.png" alt="Logo" width="40" height="40" class="mr-2" style="border-radius: 50%;">
+    </div>
+    <a class="navbar-brand font-weight-bold" href="#">AgriConnect</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navLinks">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navLinks">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="hiw.html">How it works</a></li>
+        <li class="nav-item"><a class="nav-link" href="aboutus.html">About us</a></li>
+        <li class="nav-item"><a class="nav-link" href="weather.html">Weather</a></li>
+        <li class="nav-item"><a class="nav-link" href="market_trends.html">Market-Trends</a></li>
+        <li class="nav-item" id="farmerPageNav"><a class="nav-link" href="farmer_dashboard.html">Farmers</a></li>
+        <li class="nav-item" id="buyCropsNav"><a class="nav-link" href="buy.html">Buy Crops</a></li>
+        <li class="nav-item" id="addItemsNav"><a class="nav-link" href="add_to_cart.html">Add Items</a></li>
+        <li class="nav-item" id="customernav"><a class="nav-link" href="customer.html">Customer Dashboard</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="support.html">Support</a></li>
+        <li class="nav-item" id="logoutNav"><a class="nav-link" href="#" onclick="logout()">Logout</a></li>
+        <li class="nav-item">
+          <a class="btn btn-orange ml-3" href="buy.html">Buy now</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Google Translate -->
+  <div id="google_translate_element" style="position: absolute; top: 40px; right: 10px; z-index: 1000; background-color: white; border: 1px solid black; padding: 5px;"></div>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'hi,ta,te,bn,ml,kn,mr,gu,pa,or,en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Organic Farming Reimagined<br>With AgriConnect</h1>
+    <p>
+      Connect to the farmers and get the fresh crops on the go from the fields straight
+    </p>
+    <div>
+      <a href="buy-products.html" class="btn btn-outline-light" id="buyer1">Buy Crops</a>
+      <a href="add_to_cart.html" class="btn btn-outline-light" id="farmer1">List Products</a>
+      <a href="buy.html" class="btn btn-light text-dark"id='buyer2'>Buy the Products</a>
+      <a href="hiw.html" class="btn btn-light text-dark" id="farmer2">Get Started with a tutorial</a>
+
+    </div>
+    <img src="n1.jpg" alt="Farming Greenhouse" class="hero-image">
+  </section>
+
+  <!-- Mission Section -->
+  <section class="container mt-5">
+    <div class="row align-items-center">
+      
+      <!-- Left Text Section -->
+      <div class="col-md-6">
+        <h2 class="mission-heading">Mission we<br>are working on</h2>
+        <p class="mt-3 text-muted">
+          AgriConnect aims to empower farmers by giving them a simple platform to directly list and sell their crops.
+          We connect farmers with buyers to ensure fair prices, less middlemen, and better income.
+        </p>
+        <p class="text-muted">
+          Our mission is to make crop selling easy, transparent, and digital for every farmer.
+          By using technology, we help farmers grow their business and reach more people.
+          AgriConnect is building a better future for agriculture, one crop at a time.
+        </p>
+
+        <div class="feature-boxes mt-4">
+          <div class="highlight-box">Verified Farmers</div>
+          <div class="highlight-box">24/7 Support</div>
+          <div class="highlight-box">Organic Options</div>
+        </div>
+      </div>
+
+      <!-- Right Image Section -->
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-12 mb-3">
+            <img src="n4.jpg" alt="Farming Greenhouse" class="img-fluid rounded w-100" />
+          </div>
+          <div class="col-6 pr-1">
+            <img src="n3.jpg" alt="Field Drone" class="img-fluid rounded w-100" />
+          </div>
+          <div class="col-6 pl-1">
+            <img src="n2.jpg" alt="Fresh Market" class="img-fluid rounded w-100" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- News Section Carousel -->
+  <section class="mission-section py-5 px-4" style="width:100%;">
+    <div class="container py-5" style="background-color: rgb(255, 255, 255);">
+      <h2 class="mb-5 text-center" style="font-family: 'Playfair Display', serif; color: #014034;">
+        Agriculture News & Crop Prices
+      </h2>
+      <div id="newsCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          
+          <div class="carousel-item active">
+            <div class="card shadow-sm mx-auto" style="max-width: 700px;">
+              <img src="s1.jpg" class="card-img-top" alt="Wheat">
+              <div class="card-body">
+                <h5 class="card-title">Wheat Prices Surge Amid Global Demand</h5>
+                <h6 class="card-subtitle mb-2 text-muted">April 10, 2025</h6>
+                <p class="card-text">Wheat prices have seen a 7% rise this week due to increased export demands and reduced yield in major producing regions.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="card shadow-sm mx-auto" style="max-width: 700px;">
+              <img src="s2.jpg" class="card-img-top" alt="Tomatoes">
+              <div class="card-body">
+                <h5 class="card-title">Tomato Rates Drop as Supply Increases</h5>
+                <h6 class="card-subtitle mb-2 text-muted">April 9, 2025</h6>
+                <p class="card-text">A bumper harvest in southern states has led to a sharp decrease in tomato prices across major markets.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="card shadow-sm mx-auto" style="max-width: 700px;">
+              <img src="s3.jpg" class="card-img-top" alt="Rice">
+              <div class="card-body">
+                <h5 class="card-title">Govt Announces MSP for Kharif Crops</h5>
+                <h6 class="card-subtitle mb-2 text-muted">April 8, 2025</h6>
+                <p class="card-text">The government has increased the minimum support price for key Kharif crops like rice and pulses to support farmers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#newsCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+        </a>
+        <a class="carousel-control-next" href="#newsCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Story Carousel -->
+  <section class="py-5 px-4" style="background-color: #f5f1ee; width: 100%;">
+    <div class="container">
+      <h2 class="mb-5 text-center" style="font-family: 'Playfair Display', serif; color: #014034;">
+        Farmer Success Stories
+      </h2>
+      <div id="successCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+
+          <div class="carousel-item active">
+            <div class="card shadow-sm mx-auto border-0" style="max-width: 700px;">
+              <div class="row no-gutters align-items-center">
+                <div class="col-5">
+                  <img src="farmer1.jpg" class="img-fluid rounded-left" alt="Ramesh Kumar" style="object-fit: cover; height: 100%;">
+                </div>
+                <div class="col-7">
+                  <div class="card-body">
+                    <h5 class="card-title font-weight-bold">Ramesh Kumar - Punjab</h5>
+                    <p class="card-text text-muted">Ramesh increased his profits by 45% after switching to organic methods and selling via AgriConnect.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="card shadow-sm mx-auto border-0" style="max-width: 700px;">
+              <div class="row no-gutters align-items-center">
+                <div class="col-5">
+                  <img src="farmer2.jpg" class="img-fluid rounded-left" alt="Meena Devi" style="object-fit: cover; height: 100%;">
+                </div>
+                <div class="col-7">
+                  <div class="card-body">
+                    <h5 class="card-title font-weight-bold">Meena Devi - Rajasthan</h5>
+                    <p class="card-text text-muted">Meena now exports her millet products globally, thanks to AgriConnect's digital tools and support.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="card shadow-sm mx-auto border-0" style="max-width: 700px;">
+              <div class="row no-gutters align-items-center">
+                <div class="col-5">
+                  <img src="farmer3.jpg" class="img-fluid rounded-left" alt="Arjun Patel" style="object-fit: cover; height: 100%;">
+                </div>
+                <div class="col-7">
+                  <div class="card-body">
+                    <h5 class="card-title font-weight-bold">Arjun Patel - Gujarat</h5>
+                    <p class="card-text text-muted">Arjun boosted his wheat yield by 60% using AgriConnect's AI-driven tools.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#successCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+        </a>
+        <a class="carousel-control-next" href="#successCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Carousel -->
+  <section class="py-5 px-4" style="background-color: #f5f1ee; width: 100%;">
+    <div class="container">
+      <h2 class="mb-5 text-center" style="font-family: 'Playfair Display', serif; color: #014034;">
+        Services From AgriConnect
+      </h2>
+      <div id="servicesCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+
+          <div class="carousel-item active">
+            <div class="card shadow-sm mx-auto border-0" style="max-width: 700px;">
+              <div class="row no-gutters align-items-center">
+                <div class="col-5">
+                  <img src="se3.jpg" class="img-fluid rounded-left" alt="Direct Connection" style="object-fit: cover; height: 100%;">
+                </div>
+                <div class="col-7">
+                  <div class="card-body">
+                    <h5 class="card-title font-weight-bold">Connect to Customer directly</h5>
+                    <p class="card-text text-muted">Bridge the gap between farmers and customers with AgriConnect. Empowering direct AgriBusiness without middlemen, for better profits and transparency.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="card shadow-sm mx-auto border-0" style="max-width: 700px;">
+              <div class="row no-gutters align-items-center">
+                <div class="col-5">
+                  <img src="chatbot-sita.jpg" class="img-fluid rounded-left" alt="SITAA" style="object-fit: cover; height: 100%;">
+                </div>
+                <div class="col-7">
+                  <div class="card-body">
+                    <h5 class="card-title font-weight-bold">Voice Activated AI chat bot SITAA</h5>
+                    <p class="card-text text-muted">Meet SITAA - your smart, voice-activated AI companion. Instantly respond to your queries with natural conversations, anytime, hands-free.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="card shadow-sm mx-auto border-0" style="max-width: 700px; background-color: #fff;">
+              <div class="row no-gutters align-items-center">
+                <div class="col-5">
+                  <img src="se1.jpg" class="img-fluid rounded-left" alt="Secure Payments" style="object-fit: cover; height: 100%;">
+                </div>
+                <div class="col-7">
+                  <div class="card-body">
+                    <h5 class="card-title font-weight-bold">Secure and transparent payments</h5>
+                    <p class="card-text text-muted">Experience seamless transactions with end-to-end encryption. AgriConnect ensures secure and transparent payments for trust and reliability.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#servicesCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+        </a>
+        <a class="carousel-control-next" href="#servicesCarousel" role="button" data-slide="next">
+          
+          <span class="carousel-control-next-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section class="video-section py-5" style="background-color: #f5f1ee;">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- Video on the left -->
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <div class="position-relative" style="max-width: 100%;">
+            <a href="how_it_works.mp4" target="_blank" style="display: block;">
+              <img src="n4.jpg" alt="Video thumbnail" class="img-fluid rounded shadow w-100" style="height: auto;" />
+              <span style="
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 2;
+              ">
+                <img src="https://img.icons8.com/ios-filled/100/ffffff/play-button-circled.png" alt="Play" style="width: 60px; height: 60px;" />
+              </span>
+            </a>
+          </div>
+        </div>
+  
+        <!-- Text on the right -->
+        <div class="col-lg-6">
+          <h3 class="mb-3"> Learn in Easy Ways with AgriConnect</h3>
+          <p>
+            <b> Get started by listing your products on AgriConnect and take your farming business to the next level.<br><br>
+              <a href="add_to_cart.html" class="btn btn-dark mt-3">Get Started</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+        
+          
+
+  <!-- SITA Chatbot Button -->
+  <div class="chatbot-launch">
+    <button class="chatbot-button" onclick="toggleChat()">💬</button>
+  </div>
+  
+  <!-- SITA Chatbot Window -->
+  <div id="sita-chat-window">
+    <div class="chat-header">
+      <div class="chat-header-title">
+        <img src="chatbot-sita.jpg" alt="SITA">
+        <h3>SITA - AgriConnect Assistant</h3>
+      </div>
+      <button class="close-btn" onclick="toggleChat()">×</button>
+    </div>
+    <div class="chat-body" id="chat-body">
+      <div class="welcome-message">
+        <p>👋 Hello! I'm SITA, your AgriConnect assistant.</p>
+        <p>How can I help you today?</p>
+      </div>
+      <div class="chat-suggestions">
+        <div class="suggestion-chip" onclick="selectSuggestion('Payment issues')">Payment issues</div>
+        <div class="suggestion-chip" onclick="selectSuggestion('Crop not added')">Crop not added</div>
+        <div class="suggestion-chip" onclick="selectSuggestion('Account updation')">Account updation</div>
+        <div class="suggestion-chip" onclick="selectSuggestion('Organic farming tips')">Organic farming tips</div>
+      </div>
+    </div>
+    <div class="chat-footer">
+      <input type="text" class="chat-input" id="chat-input" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+      <span class="recording-indicator" id="recording-indicator">Recording...</span>
+      <div class="chat-actions">
+        <button id="mic-button" onclick="toggleVoiceInput()">
+          <i class="fas fa-microphone"></i>
+        </button>
+        <button onclick="sendMessage()">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Divider line -->
+  <hr style="margin: 0; border-top: 3px solid #A03900;" />
+
+  <!-- Footer -->
+  <footer class="text-white pt-5 pb-4" style="background-color: #014034;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="d-flex align-items-center">
+            <img src="mainlogo.png" alt="Logo" width="40" height="40" class="mr-2" style="border-radius: 50%;">
+            <h5 class="mb-0 ml-2">AgriConnect</h5>
+          </div>
+          <p class="mt-3">Connecting Farmers & Buyers Seamlessly</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h6 class="text-uppercase mb-3">Contact Us</h6>
+          <p>Email: <a href="mailto:business@agriconnect.com" class="text-white">business@agriconnect.com</a></p>
+          <p>Phone 1: <a href="tel:+911234567890" class="text-white">+91 12345 67890</a></p>
+          <p>Phone 2: <a href="tel:+919876543210" class="text-white">+91 98765 43210</a></p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h6 class="text-uppercase mb-3">Quick Actions</h6>
+          <a href="support.html" class="btn btn-outline-light btn-sm mb-2">Complaint</a><br>
+          <a href="login-signin.html" class="btn btn-light btn-sm text-dark">Login / Signup</a>
+        </div>
+      </div>
+      <hr class="border-white" />
+      <div class="text-center">
+        &copy; 2025 AgriConnect. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- SITA Chatbot Script -->
+  <script>
+    // Chatbot responses database
+    const botResponses = {
+      "payment issues": "I understand you're having payment issues. Here are some common solutions:<br><br>1. Check if your payment method is valid and has sufficient funds<br>2. Ensure you've completed all verification steps<br>3. Try a different payment method<br>4. For refunds, please allow 3-5 business days<br><br>If you still face issues, please contact our support team at support@agriconnect.com or call +91 12345 67890.",
+      
+      "crop not added": "I'm sorry your crop wasn't added successfully. Let's troubleshoot:<br><br>1. Check your internet connection<br>2. Ensure all required fields are filled correctly<br>3. Image size should be less than 5MB<br>4. Try refreshing the page and submitting again<br><br>If the problem persists, try clearing your browser cache or using a different browser. You can also contact our farmer support at farmers@agriconnect.com.",
+      
+      "account updation": "To update your account information:<br><br>1. Go to your profile page by clicking on your name in the top right<br>2. Select 'Edit Profile'<br>3. Update the necessary information<br>4. Click 'Save Changes'<br><br>For changing your email or phone number, you'll need to verify the new contact information. If you need to change your account type (farmer/buyer), please contact our support team.",
+      
+      "organic farming tips": "Here are some organic farming tips:<br><br>1. Use compost and natural fertilizers instead of chemical ones<br>2. Practice crop rotation to maintain soil health<br>3. Use companion planting to naturally deter pests<br>4. Implement biological pest control methods<br>5. Conserve water with drip irrigation systems<br><br>Would you like more specific tips for a particular crop?",
+      
+      "hello": "Hello! How can I help you today?",
+      
+      "hi": "Hi there! How can I assist you with AgriConnect?",
+      
+      "help": "I'm here to help! You can ask me about:<br>- Payment issues<br>- Adding crops<br>- Account management<br>- Farming tips<br>- Market prices<br>- Or any other questions about AgriConnect",
+      
+      "thank you": "You're welcome! Is there anything else I can help you with?",
+      
+      "thanks": "You're welcome! Is there anything else I can help you with?",
+      
+      "bye": "Goodbye! Feel free to chat with me anytime you need assistance.",
+      
+      "market prices": "For the latest market prices, please visit the 'Buy Crops' section of our website. You can filter by crop type and location to see current prices. We update our prices daily based on market trends and demand.",
+      
+      "contact support": "You can contact our support team via:<br>- Email: support@agriconnect.com<br>- Phone: +91 12345 67890<br>- Chat: Use this chatbot or visit our Support page<br><br>Our support hours are 9 AM to 6 PM, Monday to Saturday."
+    };
+
+    // Default response for unknown queries
+    const defaultResponse = "I'm not sure I understand. Could you please rephrase your question or select one of the suggested topics?";
+
+    // Chat window toggle
+    function toggleChat() {
+      const chatWindow = document.getElementById("sita-chat-window");
+      if (chatWindow.style.display === "none" || chatWindow.style.display === "") {
+        chatWindow.style.display = "flex";
+        document.getElementById("chat-input").focus();
+      } else {
+        chatWindow.style.display = "none";
+        stopVoiceRecognition(); // Stop recording if active
+      }
+    }
+
+    // Send message function
+    function sendMessage() {
+      const inputElement = document.getElementById("chat-input");
+      const message = inputElement.value.trim();
+      
+      if (message === "") return;
+      
+      // Add user message to chat
+      addMessage(message, "user");
+      inputElement.value = "";
+      
+      // Show typing indicator
+      showTypingIndicator();
+      
+      // Process the message and respond after a short delay
+      setTimeout(() => {
+        processMessage(message);
+      }, 1000);
+    }
+
+    // Handle Enter key press
+    function handleKeyPress(event) {
+      if (event.key === "Enter") {
+        sendMessage();
+      }
+    }
+
+    // Add message to chat
+    function addMessage(message, sender) {
+      const chatBody = document.getElementById("chat-body");
+      const messageElement = document.createElement("div");
+      messageElement.className = `chat-message ${sender}-message`;
+      messageElement.innerHTML = message;
+      chatBody.appendChild(messageElement);
+      
+      // Scroll to bottom
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    // Show typing indicator
+    function showTypingIndicator() {
+      const chatBody = document.getElementById("chat-body");
+      const typingIndicator = document.createElement("div");
+      typingIndicator.className = "typing-indicator";
+      typingIndicator.id = "typing-indicator";
+      typingIndicator.innerHTML = "<span></span><span></span><span></span>";
+      chatBody.appendChild(typingIndicator);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    // Hide typing indicator
+    function hideTypingIndicator() {
+      const typingIndicator = document.getElementById("typing-indicator");
+      if (typingIndicator) {
+        typingIndicator.remove();
+      }
+    }
+
+    // Process user message and generate response
+    function processMessage(message) {
+      hideTypingIndicator();
+      
+      // Convert message to lowercase for matching
+      const lowerMessage = message.toLowerCase();
+      
+      // Check for matches in our response database
+      let response = null;
+      
+      // Check for exact matches first
+      if (botResponses[lowerMessage]) {
+        response = botResponses[lowerMessage];
+      } else {
+        // Check for partial matches
+        for (const key in botResponses) {
+          if (lowerMessage.includes(key)) {
+            response = botResponses[key];
+            break;
+          }
+        }
+      }
+      
+      // If no match found, use default response
+      if (!response) {
+        response = defaultResponse;
+      }
+      
+      // Add bot response to chat
+      addMessage(response, "bot");
+      
+      // Show suggestions again after response
+      setTimeout(() => {
+        showSuggestions();
+      }, 500);
+    }
+
+    // Show suggestions
+    function showSuggestions() {
+      const chatBody = document.getElementById("chat-body");
+      const suggestionsElement = document.createElement("div");
+      suggestionsElement.className = "chat-suggestions";
+      suggestionsElement.innerHTML = `
+        <div class="suggestion-chip" onclick="selectSuggestion('Payment issues')">Payment issues</div>
+        <div class="suggestion-chip" onclick="selectSuggestion('Crop not added')">Crop not added</div>
+        <div class="suggestion-chip" onclick="selectSuggestion('Account updation')">Account updation</div>
+        <div class="suggestion-chip" onclick="selectSuggestion('Organic farming tips')">Organic farming tips</div>
+      `;
+      chatBody.appendChild(suggestionsElement);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    // Handle suggestion selection
+    function selectSuggestion(suggestion) {
+      document.getElementById("chat-input").value = suggestion;
+      sendMessage();
+    }
+
+    // Voice recognition variables
+    let recognition;
+    let isRecording = false;
+
+    // Initialize speech recognition
+    function initSpeechRecognition() {
+      if ('webkitSpeechRecognition' in window) {
+        recognition = new webkitSpeechRecognition();
+        recognition.continuous = false;
+        recognition.interimResults = true;
+        recognition.lang = 'en-IN'; // Set to Indian English
+        
+        recognition.onstart = function() {
+          isRecording = true;
+          document.getElementById("recording-indicator").style.display = "inline";
+          document.getElementById("mic-button").style.backgroundColor = "#d9534f";
+        };
+        
+        recognition.onresult = function(event) {
+          let interimTranscript = '';
+          let finalTranscript = '';
+          
+          for (let i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+              finalTranscript += event.results[i][0].transcript;
+            } else {
+              interimTranscript += event.results[i][0].transcript;
+            }
+          }
+          
+          if (finalTranscript !== '') {
+            document.getElementById("chat-input").value = finalTranscript;
+          } else {
+            document.getElementById("chat-input").value = interimTranscript;
+          }
+        };
+        
+        recognition.onerror = function(event) {
+          console.error("Speech recognition error", event.error);
+          stopVoiceRecognition();
+        };
+        
+        recognition.onend = function() {
+          stopVoiceRecognition();
+          // If we have text, send the message
+          if (document.getElementById("chat-input").value.trim() !== '') {
+            sendMessage();
+          }
+        };
+      } else {
+        alert("Speech recognition is not supported in your browser. Please try Chrome or Edge.");
+      }
+    }
+
+    // Toggle voice input
+    function toggleVoiceInput() {
+      if (!recognition) {
+        initSpeechRecognition();
+      }
+      
+      if (isRecording) {
+        stopVoiceRecognition();
+      } else {
+        startVoiceRecognition();
+      }
+    }
+
+    // Start voice recognition
+    function startVoiceRecognition() {
+      if (recognition) {
+        recognition.start();
+      }
+    }
+
+    // Stop voice recognition
+    function stopVoiceRecognition() {
+      if (recognition) {
+        recognition.stop();
+        isRecording = false;
+        document.getElementById("recording-indicator").style.display = "none";
+        document.getElementById("mic-button").style.backgroundColor = "#0a9444";
+      }
+    }
+
+    // Initialize chatbot when page loads
+    document.addEventListener("DOMContentLoaded", function() {
+      // Initialize speech recognition if available
+      if ('webkitSpeechRecognition' in window) {
+        initSpeechRecognition();
+      }
+    });
+  </script>
+
+  <!-- Bootstrap and jQuery Scripts -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

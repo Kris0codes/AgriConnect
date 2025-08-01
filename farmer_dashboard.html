@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dashboard - AgriConnect</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+
+        .navbar {
+            background-color: #014034 !important;
+            padding: 15px;
+            color: white;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .navbar .links a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            color: #014034;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #014034;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .card p {
+            margin: 8px 0;
+            color: #333;
+        }
+
+        .card strong {
+            color: #A03900;
+        }
+
+        .footer {
+            background-color: #014034;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .btn-orange {
+            background-color: #A03900;
+            color: white;
+        }
+
+        .btn-orange:hover {
+            background-color: #7a2c00;
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .nav-link {
+            color: white !important;
+        }
+
+        .nav-link:hover {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <div class="d-flex align-items-center">
+                <img src="mainlogo.png" alt="Logo" width="40" height="40" class="me-2" style="border-radius: 50%;">
+                <a class="navbar-brand logo" href="home.html">AgriConnect</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navLinks">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navLinks">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="add_to_cart.html">Add Crop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="aboutus.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="support.html">Support</a></li>
+                    <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="logout()">Logout</a></li>
+                    <li class="nav-item">
+                        <a class="btn btn-orange ms-3" href="buy.html">Buy Now</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="page-title">Added Crops</h2>
+        <div id="card-container" class="card-container">
+            <!-- Cards will be loaded here -->
+            <div class="empty-state">
+                <p>Loading crops...</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="d-flex align-items-center">
+                        <img src="mainlogo.png" alt="Logo" width="40" height="40" class="me-2" style="border-radius: 50%;">
+                        <h5 class="mb-0 ms-2">AgriConnect</h5>
+                    </div>
+                    <p class="mt-3">Connecting Farmers & Buyers Seamlessly</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="text-uppercase mb-3">Contact Us</h6>
+                    <p>Email: <a href="mailto:business@agriconnect.com" class="text-white">business@agriconnect.com</a></p>
+                    <p>Phone: <a href="tel:+911234567890" class="text-white">+91 12345 67890</a></p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h6 class="text-uppercase mb-3">Quick Actions</h6>
+                    <a href="support.html" class="btn btn-outline-light btn-sm mb-2">Complaint</a><br>
+                    <a href="login-signin.html" class="btn btn-light btn-sm text-dark">Login / Signup</a>
+                </div>
+            </div>
+            <hr class="border-white" />
+            <div class="text-center">
+                &copy; 2025 AgriConnect. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+      
+        const firebaseConfig = {
+          apiKey: "AIzaSyAXWHJCoMfBOG_HAEkAmn2B59610Z1PRew",
+          authDomain: "agriconnect-e5951.firebaseapp.com",
+          projectId: "agriconnect-e5951",
+          storageBucket: "agriconnect-e5951.appspot.com",
+          messagingSenderId: "778997833951",
+          appId: "1:778997833951:web:2a38072c5e4a2be93ac96a",
+          measurementId: "G-34P7ZK4HKM"
+        };
+      
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+      
+        // Make logout function available globally
+        window.logout = function() {
+          signOut(auth).then(() => {
+            window.location.href = "login-signin.html";
+          }).catch((error) => {
+            console.error("Error signing out:", error);
+          });
+        };
+      
+        // Check user authentication
+        onAuthStateChanged(auth, (user) => {
+          if (!user) {
+            alert("Please login first!");
+            window.location.href = "login-signin.html";
+          } else {
+            loadCrops(); // Load crops only after user is authenticated
+          }
+        });
+      
+        async function loadCrops() {
+          const container = document.getElementById("card-container");
+          container.innerHTML = ""; // Clear existing cards if any
+      
+          try {
+            // Try to fetch from both "crops" and "crop" collections
+            let querySnapshot = await getDocs(collection(db, "crops"));
+            
+            // If "crops" collection is empty, try "crop" collection
+            if (querySnapshot.empty) {
+              querySnapshot = await getDocs(collection(db, "crop"));
+            }
+            
+            if (querySnapshot.empty) {
+              container.innerHTML = `
+                <div class="empty-state">
+                  <p>No crops available yet.</p>
+                  <a href="add_to_cart.html" class="btn btn-orange mt-3">Add Your First Crop</a>
+                </div>
+              `;
+              return;
+            }
+      
+            querySnapshot.forEach((doc) => {
+              const data = doc.data();
+              const card = document.createElement("div");
+              card.className = "card";
+              
+              // Handle different field names between collections
+              const productName = data.productName || data.name || "Unnamed Crop";
+              const price = data.price ? `₹${data.price}` : "";
+              
+              card.innerHTML = `
+                <h3>${productName}</h3>
+                ${price ? `<p><strong>Price:</strong> ${price}</p>` : ""}
+                ${data.type ? `<p><strong>Type:</strong> ${data.type}</p>` : ""}
+                ${data.minOrder ? `<p><strong>Min Order:</strong> ${data.minOrder}</p>` : ""}
+                ${data.maxOrder ? `<p><strong>Max Order:</strong> ${data.maxOrder}</p>` : ""}
+                ${data.weight ? `<p><strong>Weight:</strong> ${data.weight}</p>` : ""}
+                ${data.quality ? `<p><strong>Quality:</strong> ${data.quality}</p>` : ""}
+                ${data.contact ? `<p><strong>Contact:</strong> ${data.contact}</p>` : ""}
+              `;
+              container.appendChild(card);
+            });
+          } catch (error) {
+            console.error("Error loading crops:", error);
+            container.innerHTML = `
+              <div class="empty-state">
+                <p>Error loading crops. Please try again later.</p>
+                <button class="btn btn-orange mt-3" onclick="loadCrops()">Retry</button>
+              </div>
+            `;
+          }
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

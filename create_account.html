@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AgriConnect - Create Account</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-image: url(mainBG.jpg);
+      background-size: cover;
+    }
+  </style>
+</head>
+
+
+
+<body class="bg-light">
+  <div class="container py-5">
+    <div class="card shadow-lg p-4">
+      <h2 class="text-center mb-4 text-success">Create Your AgriConnect Account</h2>
+
+      <!-- Account Role Selection -->
+      <div class="mb-3">
+        <label for="user_role" class="form-label">Registering as</label>
+        <select class="form-select" id="user_role" required>
+          <option selected disabled>Select role...</option>
+          <option value="farmer">Farmer</option>
+          <option value="buyer">Buyer</option>
+        </select>
+      </div>
+
+      <form id="signup-form">
+        <!-- Personal Info -->
+        <h4 class="mb-3">Personal Information</h4>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="name" class="form-label">Name</label>
+            <input id="name" type="text" class="form-control" placeholder="Enter your name" required>
+          </div>
+          <div class="col-md-6">
+            <label for="phone" class="form-label">Phone</label>
+            <input id="phone" type="tel" class="form-control" placeholder="Enter your phone number" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input id="email" type="email" class="form-control" placeholder="Enter your email" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="address" class="form-label">Address</label>
+          <textarea id="address" class="form-control" rows="3" placeholder="Enter your address"></textarea>
+        </div>
+
+        <!-- Farm Info (shown only if farmer) -->
+        <div id="farm-fields" style="display: none;">
+          <h4 class="mt-4 mb-3">Farm Details</h4>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="farm_name" class="form-label">Farm Name</label>
+              <input id="farm_name" type="text" class="form-control" placeholder="Enter your farm name">
+            </div>
+            <div class="col-md-6">
+              <label for="farm_size" class="form-label">Farm Size</label>
+              <input id="farm_size" type="text" class="form-control" placeholder="e.g., 10 acres">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="farm_location" class="form-label">Farm Location</label>
+            <input id="farm_location" type="text" class="form-control" placeholder="Farm location">
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="farm_crops" class="form-label">Farm Crops</label>
+              <select class="form-select" id="farm_crops">
+                <option selected disabled>Choose crop type...</option>
+                <option>Pulses</option>
+                <option>Fruits</option>
+                <option>Vegetables</option>
+                <option>Grain</option>
+                <option>Dairy</option>
+                <option>Meat</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="farm_animals" class="form-label">Farm Animals</label>
+              <select class="form-select" id="farm_animals">
+                <option selected disabled>Choose livestock...</option>
+                <option>Cattle</option>
+                <option>Poultry</option>
+                <option>Fish</option>
+                <option>Sheep</option>
+                <option>Goats</option>
+                <option>Pigs</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Buyer-specific Requirements -->
+        <div id="buyer-fields" style="display: none;">
+          <h4 class="mt-4 mb-3">Requirements</h4>
+          <div class="mb-3">
+            <label for="buyer_requirements" class="form-label">What are you looking to buy?</label>
+            <input id="buyer_requirements" type="text" class="form-control" placeholder="e.g., Wheat, Tomatoes, Milk">
+          </div>
+        </div>
+
+        <!-- Account Info -->
+        <h4 class="mt-4 mb-3">Account Details</h4>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label for="password" class="form-label">Password</label>
+            <input id="password" type="password" class="form-control" placeholder="Enter your password" required>
+          </div>
+          <div class="col-md-6">
+            <label for="confirm_password" class="form-label">Confirm Password</label>
+            <input id="confirm_password" type="password" class="form-control" placeholder="Confirm your password" required>
+          </div>
+        </div>
+
+        <div class="form-check mb-4">
+          <input type="checkbox" class="form-check-input" id="terms" required>
+          <label class="form-check-label" for="terms">
+            I agree to the <a href="#">terms and conditions</a>.
+          </label>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-success px-5">Create Account</button>
+        </div>
+      </form>
+    </div>
+  </div><!-- Google Translate -->
+  <div id="google_translate_element" style="position: absolute; top: 40px; right: 10px; z-index: 1000; background-color: white; border: 1px solid black; padding: 5px;"></div>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'hi,ta,te,bn,ml,kn,mr,gu,pa,or,en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+  apiKey: "AIzaSyAXWHJCoMfBOG_HAEkAmn2B59610Z1PRew",
+  authDomain: "agriconnect-e5951.firebaseapp.com",
+  projectId: "agriconnect-e5951",
+  storageBucket: "agriconnect-e5951.firebasestorage.app",
+  messagingSenderId: "778997833951",
+  appId: "1:778997833951:web:2a38072c5e4a2be93ac96a",
+  measurementId: "G-34P7ZK4HKM"
+};
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    document.getElementById("signup-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm_password").value;
+      const userType = document.getElementById("user_role").value;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        const userData = {
+          name: document.getElementById("name").value,
+          phone: document.getElementById("phone").value,
+          address: document.getElementById("address").value,
+          email: email,
+          userType: userType,
+          createdAt: new Date()
+        };
+
+        if (userType === "farmer") {
+          userData.farmName = document.getElementById("farm_name").value || null;
+          userData.farmSize = document.getElementById("farm_size").value || null;
+          userData.farmLocation = document.getElementById("farm_location").value || null;
+          userData.farmCrops = document.getElementById("farm_crops").value || null;
+          userData.farmAnimals = document.getElementById("farm_animals").value || null;
+        } else if (userType === "buyer") {
+          const req = document.getElementById("buyer_requirements").value;
+          userData.requirements = req ? req.split(",").map(i => i.trim()) : [];
+        }
+
+        await setDoc(doc(db, "users", user.uid), userData);
+
+        alert("Account created successfully!");
+        window.location.href = "login-signin.html";
+      } catch (error) {
+        console.error("Signup error:", error);
+        alert("Error: " + error.message);
+      }
+    });
+
+    // Toggle visibility based on role
+    document.getElementById("user_role").addEventListener("change", function () {
+      const role = this.value;
+      document.getElementById("farm-fields").style.display = role === "farmer" ? "block" : "none";
+      document.getElementById("buyer-fields").style.display = role === "buyer" ? "block" : "none";
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

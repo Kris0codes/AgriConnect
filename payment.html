@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Select Payment Type</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-image: url(mainBG.jpg);
+      background-color: #f0fff4;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: rgb(64, 178, 100) 0.8;
+      padding: 30px;
+      border: #fff;
+      border-radius: 12px;
+      box-sizing: #1e1b1b 1;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      font-family: 'Playfair Display', serif;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .payment-option {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background: #e6f4ea;
+      padding: 15px 20px;
+      margin: 12px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .payment-option:hover {
+      background: #6fbcd6;
+      transform: translateY(-2px);
+    }
+
+    .icon {
+      font-size: 26px;
+      margin-right: 15px;
+      color: #014034;
+    }
+
+    .payment-option span:last-child {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #014034;
+    }
+
+    @media (max-width: 480px) {
+      .payment-option {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Select Your Payment Type</h2>
+    <div class="payment-option" onclick="window.location.href='https://paytm.com/pay?amount=200'">
+      <span class="icon">💳</span>
+      <span>Paytm</span>
+    </div>
+    <div class="payment-option" onclick="location.href='googlepay.html'">
+      <span class="icon">📱</span>
+      <span>Google Pay</span>
+    </div>
+    <div class="payment-option" onclick="location.href='googlepay.html'">
+      <span class="icon">🏦</span>
+      <span>Net Banking</span>
+    </div>
+  </div>
+</body>
+</html>

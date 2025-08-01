@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family:'Inter', sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            margin: auto;
+            text-align: left;
+        }
+
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .hero {
+      background-color: #014034;
+      color: white;
+      text-align: center;
+      padding: 100px 20px 60px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 600;
+    }
+    .hero p {
+      max-width: 600px;
+      margin: 20px auto;
+      font-size: 1rem;
+    }
+    .hero .btn {
+      margin: 10px;
+      padding: 12px 30px;
+      font-weight: 500;
+      border-radius: 2px;
+    }
+
+        .calendar {
+            width: 70%;
+            border-collapse: collapse;
+            margin-bottom: 90px;
+        }
+
+        .calendar th, .calendar td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            width: 14.28%;
+            height: 40px;
+            font-size: 14px;
+        }
+
+        .upcoming-events {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+        nav.navbar {
+      background-color: white;
+    }
+    nav .nav-link {
+      color: #000;
+      font-weight: 500;
+    }
+    nav .btn-orange {
+      padding: 6px 16px;
+    }
+
+        .upcoming-events h3 {
+            margin-bottom: 10px;
+        }
+
+        .event-item {
+            padding: 5px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            text-align: left;
+        }
+    </style>
+</head>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+  
+  const firebaseConfig = {
+    apiKey: "AIzaSyAXWHJCoMfBOG_HAEkAmn2B59610Z1PRew",
+    authDomain: "agriconnect-e5951.firebaseapp.com",
+    projectId: "agriconnect-e5951",
+    storageBucket: "agriconnect-e5951.firebasestorage.app",
+    messagingSenderId: "778997833951",
+    appId: "1:778997833951:web:2a38072c5e4a2be93ac96a",
+    measurementId: "G-34P7ZK4HKM"
+  };
+  
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      alert("Please login first!");
+      window.location.href = "login-signin.html";
+    }
+  });</script>
+<body>
+    <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light px-4">
+    <div class="d-flex align-items-center">
+      <img src="mainlogo.png" alt="Logo" width="40" height="40" class="mr-2" style="border-radius: 50%;">
+    </div>
+    <a class="navbar-brand font-weight-bold" href="home.html">AgriConnect</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navLinks">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navLinks">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="#">How it works</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About us</a></li>
+        <li class="nav-item"><a class="nav-link" href="">Farmers</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Support</a></li>
+        <li class="nav-item"><a class="nav-link" href="login-signin.html">Sign/Login</a></li>
+        
+
+        <li class="nav-item">
+          <a class="btn btn-orange ml-3" href="#">Buy now</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <body>
+    <!-- Google Translate -->
+  <div id="google_translate_element" style="position: absolute; top: 40px; right: 10px; z-index: 1000; background-color: white; border: 1px solid black; padding: 5px;"></div>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'hi,ta,te,bn,ml,kn,mr,gu,pa,or,en',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+<!-- Schedule -->
+    <div class="container">
+        <h2>March 2025</h2>
+        <div class="main-content">
+            <table class="calendar">
+                <tr>
+                    <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>
+                </tr>
+                <tr>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td>1</td>
+                </tr>
+                <tr>
+                    <td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7<br><span style="color: red;">Harvest</span></td><td>8</td>
+                </tr>
+                <tr>
+                    <td>9</td><td>10</td><td>11</td><td>12<br><span style="color: green;">Gov. Holiday</span></td><td>13</td><td>14</td><td>15</td>
+                </tr>
+                <tr>
+                    <td>16<br><span style="color: red;">Delivery Corn</span></td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td>
+                </tr>
+            </table>
+
+            <div class="upcoming-events">
+                <h3>Upcoming Events</h3>
+                <div class="event-item"><strong>March 7:</strong> Harvest</div>
+                <div class="event-item"><strong>March 12:</strong> Government Holiday</div>
+                <div class="event-item"><strong>March 16:</strong> Delivery Corn</div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Divider line -->
+  <hr style="margin: 0; border-top: 3px solid #A03900;" />
+
+    <!-- Footer -->
+  <footer class="text-white pt-5 pb-4" style="background-color: #014034;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="d-flex align-items-center">
+            <img src="mainlogo.png" alt="Logo" width="40" height="40" class="mr-2" style="border-radius: 50%;">
+            <h5 class="mb-0 ml-2">AgriConnect</h5>
+          </div>
+          <p class="mt-3">Connecting Farmers & Buyers Seamlessly</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h6 class="text-uppercase mb-3">Contact Us</h6>
+          <p>Email: <a href="mailto:business@agriconnect.com" class="text-white">business@agriconnect.com</a></p>
+          <p>Phone 1: <a href="tel:+911234567890" class="text-white">+91 12345 67890</a></p>
+          <p>Phone 2: <a href="tel:+919876543210" class="text-white">+91 98765 43210</a></p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h6 class="text-uppercase mb-3">Quick Actions</h6>
+          <a href="#complaint" class="btn btn-outline-light btn-sm mb-2">Complaint</a><br>
+          <a href="login-signin.html" class="btn btn-light btn-sm text-dark">Login / Signup</a>
+        </div>
+      </div>
+      <hr class="border-white" />
+      <div class="text-center">
+        &copy; 2025 AgriConnect. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
